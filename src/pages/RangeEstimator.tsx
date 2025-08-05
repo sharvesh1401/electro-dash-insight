@@ -68,20 +68,20 @@ const RangeEstimator = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="spacing-responsive max-w-7xl mx-auto">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="glass-card p-6"
+        className="glass-card card-responsive"
       >
-        <div className="flex items-center gap-3 mb-4">
-          <div className="p-3 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-xl">
-            <Battery className="h-6 w-6 text-white" />
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 mb-4">
+          <div className="p-2 sm:p-3 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-xl">
+            <Battery className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-white">Range Estimator</h1>
-            <p className="text-white/70">Predict your EV's driving range with ML</p>
+            <h1 className="text-scale-xl font-bold text-white">Range Estimator</h1>
+            <p className="text-white/70 text-sm">Predict your EV's driving range with ML</p>
           </div>
         </div>
         <div className="glass-card px-3 py-1 inline-block">
@@ -89,17 +89,17 @@ const RangeEstimator = () => {
         </div>
       </motion.div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
         {/* Input Panel */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.2 }}
         >
-          <Card className="glass-card p-6">
-            <h2 className="text-xl font-semibold text-white mb-6">Vehicle Parameters</h2>
+          <Card className="glass-card card-responsive">
+            <h2 className="text-scale-lg font-semibold text-white mb-6">Vehicle Parameters</h2>
             
-            <div className="space-y-6">
+            <div className="spacing-responsive">
               {/* Battery Level */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
@@ -199,7 +199,7 @@ const RangeEstimator = () => {
             <Button
               onClick={predictRange}
               disabled={isLoading}
-              className="w-full mt-6 glass-button bg-primary/20 hover:bg-primary/30 text-primary border-primary/30"
+              className="w-full mt-6 glass-button bg-primary/20 hover:bg-primary/30 text-primary border-primary/30 btn-touch"
             >
               {isLoading ? "Calculating..." : "Calculate Range"}
             </Button>
@@ -212,8 +212,8 @@ const RangeEstimator = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.4 }}
         >
-          <Card className="glass-card p-6">
-            <h2 className="text-xl font-semibold text-white mb-6">Range Prediction</h2>
+          <Card className="glass-card card-responsive">
+            <h2 className="text-scale-lg font-semibold text-white mb-6">Range Prediction</h2>
             
             {prediction !== null ? (
               <motion.div

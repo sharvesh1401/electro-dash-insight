@@ -55,38 +55,38 @@ const stats = [
 
 const Dashboard = () => {
   return (
-    <div className="space-y-8">
+    <div className="spacing-responsive max-w-7xl mx-auto">
       {/* Hero Section */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="glass-card p-8 text-center"
+        className="glass-card card-responsive text-center"
       >
-        <h1 className="text-4xl font-bold text-white mb-4">
-          EV Toolkit Dashboard
+        <h1 className="text-scale-2xl font-bold text-white mb-4">
+          EcoAmp Suite Dashboard
         </h1>
-        <p className="text-xl text-white/80 mb-6">
-          Machine Learning-powered analytics for electric vehicles
+        <p className="text-scale-lg text-white/80 mb-6">
+          Advanced machine learning platform for electric vehicle analytics
         </p>
-        <div className="grid grid-cols-3 gap-6 max-w-2xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 max-w-2xl mx-auto">
           {stats.map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: index * 0.1 }}
-              className="glass-card p-4"
-            >
-              <stat.icon className="h-8 w-8 text-primary mx-auto mb-2" />
-              <div className="text-2xl font-bold text-white">{stat.value}</div>
-              <div className="text-sm text-white/60">{stat.label}</div>
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: index * 0.1 }}
+                className="glass-card p-3 sm:p-4"
+              >
+                <stat.icon className="h-6 w-6 sm:h-8 sm:w-8 text-primary mx-auto mb-2" />
+                <div className="text-lg sm:text-2xl font-bold text-white">{stat.value}</div>
+                <div className="text-xs sm:text-sm text-white/60">{stat.label}</div>
             </motion.div>
           ))}
         </div>
       </motion.div>
 
       {/* Tools Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
         {tools.map((tool, index) => (
           <motion.div
             key={tool.title}
@@ -94,11 +94,11 @@ const Dashboard = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 + index * 0.1 }}
           >
-            <Card className="glass-card p-6 hover-lift hover-glow group cursor-pointer h-full">
+            <Card className="glass-card card-responsive hover-lift hover-glow group cursor-pointer h-full">
               <Link to={tool.url} className="block h-full">
                 <div className="flex items-start justify-between mb-4">
-                  <div className={`p-3 rounded-xl bg-gradient-to-r ${tool.color}`}>
-                    <tool.icon className="h-6 w-6 text-white" />
+                  <div className={`p-2 sm:p-3 rounded-xl bg-gradient-to-r ${tool.color}`}>
+                    <tool.icon className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
                   </div>
                   <div className="glass-card px-2 py-1">
                     <span className="text-xs text-primary font-medium">
@@ -107,17 +107,17 @@ const Dashboard = () => {
                   </div>
                 </div>
                 
-                <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-primary transition-colors">
+                <h3 className="text-base sm:text-xl font-semibold text-white mb-2 group-hover:text-primary transition-colors">
                   {tool.title}
                 </h3>
                 
-                <p className="text-white/70 text-sm mb-4 leading-relaxed">
+                <p className="text-white/70 text-xs sm:text-sm mb-4 leading-relaxed">
                   {tool.description}
                 </p>
                 
                 <div className="flex items-center justify-between mt-auto">
                   <span className="text-xs text-white/50">
-                    Click to explore
+                    Tap to explore
                   </span>
                   <ChevronRight className="h-4 w-4 text-primary group-hover:translate-x-1 transition-transform" />
                 </div>
@@ -127,18 +127,18 @@ const Dashboard = () => {
         ))}
       </div>
 
-      {/* Quick Info */}
+      {/* About Section */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.8 }}
-        className="glass-card p-6"
+        className="glass-card card-responsive"
       >
-        <h2 className="text-2xl font-bold text-white mb-4">About EV Toolkit</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <h2 className="text-scale-xl font-bold text-white mb-4">About EcoAmp Suite</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
           <div>
-            <h3 className="text-lg font-semibold text-primary mb-2">Technology Stack</h3>
-            <ul className="space-y-2 text-white/70">
+            <h3 className="text-base sm:text-lg font-semibold text-primary mb-2">Technology Stack</h3>
+            <ul className="space-y-1 sm:space-y-2 text-white/70 text-sm">
               <li>• TensorFlow.js for in-browser ML inference</li>
               <li>• ONNX Runtime Web for optimized models</li>
               <li>• React + TypeScript for robust UI</li>
@@ -146,8 +146,8 @@ const Dashboard = () => {
             </ul>
           </div>
           <div>
-            <h3 className="text-lg font-semibold text-primary mb-2">Key Features</h3>
-            <ul className="space-y-2 text-white/70">
+            <h3 className="text-base sm:text-lg font-semibold text-primary mb-2">Key Features</h3>
+            <ul className="space-y-1 sm:space-y-2 text-white/70 text-sm">
               <li>• 96%+ accuracy on all ML models</li>
               <li>• No backend required - fully static</li>
               <li>• Real-time predictions in the browser</li>

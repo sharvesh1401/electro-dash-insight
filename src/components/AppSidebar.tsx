@@ -93,21 +93,21 @@ export function AppSidebar() {
       collapsible="icon"
     >
       <SidebarHeader className="p-6">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-center"
-        >
-          <div className="glass-card p-4 gradient-forest">
-            <h1 className={`font-bold text-white ${collapsed ? "text-xs" : "text-xl"}`}>
-              {collapsed ? "EV" : "EV Toolkit"}
-            </h1>
-            {!collapsed && (
-              <p className="text-white/80 text-sm mt-1">ML-Powered Analytics</p>
-            )}
-          </div>
-        </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-center"
+          >
+            <div className="glass-card p-3 sm:p-4 gradient-forest">
+              <h1 className={`font-bold text-white ${collapsed ? "text-xs" : "text-sm sm:text-lg lg:text-xl"}`}>
+                {collapsed ? "EA" : "EcoAmp Suite"}
+              </h1>
+              {!collapsed && (
+                <p className="text-white/80 text-xs sm:text-sm mt-1">ML-Powered EV Analytics</p>
+              )}
+            </div>
+          </motion.div>
       </SidebarHeader>
 
       <SidebarContent className="px-4">
@@ -128,11 +128,11 @@ export function AppSidebar() {
                         transition={{ delay: index * 0.1 }}
                         className={getNavClasses(tool.url)}
                       >
-                        <tool.icon className="h-5 w-5 flex-shrink-0" />
+                        <tool.icon className="h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0" />
                         {!collapsed && (
                           <div className="flex-1 min-w-0">
-                            <div className="font-medium">{tool.title}</div>
-                            <div className="text-xs text-muted-foreground truncate">
+                            <div className="font-medium text-xs sm:text-sm">{tool.title}</div>
+                            <div className="text-xs text-muted-foreground truncate hidden sm:block">
                               {tool.description}
                             </div>
                           </div>
@@ -147,7 +147,7 @@ export function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
 
-      <SidebarFooter className="p-4">
+      <SidebarFooter className="p-3 sm:p-4">
         <SidebarGroup>
           <SidebarGroupLabel className="text-sidebar-foreground/60 font-semibold mb-2">
             {collapsed ? "Links" : "Connect"}
@@ -160,10 +160,10 @@ export function AppSidebar() {
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="glass-button p-2 flex items-center gap-3 text-sidebar-foreground hover:text-primary transition-colors w-full"
+                  className="glass-button p-2 flex items-center gap-2 sm:gap-3 text-sidebar-foreground hover:text-primary transition-colors w-full btn-touch"
                 >
                   <link.icon className="h-4 w-4" />
-                  {!collapsed && <span className="text-sm">{link.title}</span>}
+                  {!collapsed && <span className="text-xs sm:text-sm">{link.title}</span>}
                 </a>
               ))}
             </div>
