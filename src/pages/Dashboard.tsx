@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Battery, DollarSign, Zap, Calculator, TrendingUp, ChevronRight, Cpu, Database, Globe, Github, ExternalLink, X, ArrowLeft, FileText, User } from "lucide-react";
+import { Battery, DollarSign, Zap, Calculator, TrendingUp, ChevronRight, Cpu, Database, Globe, Github, ExternalLink, X, ArrowLeft, FileText, User, Menu } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router-dom";
@@ -81,6 +81,7 @@ const externalLinks = [
 const Dashboard = () => {
   const [predictionCount, setPredictionCount] = useState(getPredictionCount());
   const [visibleSections, setVisibleSections] = useState(new Set());
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
   const isOnToolPage = location.pathname !== '/';
   const scrollDirection = useScrollDirection();
@@ -147,7 +148,7 @@ const Dashboard = () => {
           
           {/* Quick Navigation - Hidden on Tool Pages */}
           {!isOnToolPage && (
-            <div className="flex flex-wrap gap-3 lg:gap-4">
+            <div className="hidden lg:flex flex-wrap gap-3 lg:gap-4">
               {navigationTools.map((tool) => (
                 <Link key={tool.title} to={tool.url}>
                   <Button 
@@ -164,7 +165,7 @@ const Dashboard = () => {
             </div>
           )}
           
-          {/* Enhanced External Links */}
+          {/* Enhanced External Links & Hamburger Menu */}
           <div className="flex items-center gap-4">
             {externalLinks.map((link) => (
               <a
@@ -192,8 +193,35 @@ const Dashboard = () => {
                 )}
               </a>
             ))}
+            <div className="lg:hidden">
+              <Button onClick={() => setIsMenuOpen(!isMenuOpen)} variant="ghost" size="icon" className="glass-button-enhanced" aria-label="Open menu">
+                <Menu className="h-6 w-6" />
+              </Button>
+            </div>
           </div>
         </div>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="lg:hidden mt-4"
+          >
+            <div className="flex flex-col gap-2">
+              {navigationTools.map((tool) => (
+                <Link key={tool.title} to={tool.url}>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="w-full justify-start glass-button-enhanced text-sm hover:text-emerald-300 hover:border-emerald-400/40 hover:bg-emerald-500/15 btn-touch transition-all duration-300 hover:scale-105"
+                  >
+                    <tool.icon className="h-4 w-4 mr-2" />
+                    <span>{tool.title}</span>
+                  </Button>
+                </Link>
+              ))}
+            </div>
+          </motion.div>
+        )}
       </motion.header>
 
       {/* Enhanced Netflix-style Hero Section */}
