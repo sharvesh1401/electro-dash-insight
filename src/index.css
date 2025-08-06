@@ -78,13 +78,37 @@
 }
 
 @layer components {
-  /* Glassmorphism Components */
+  /* Glassmorphism Components - Liquid Glass Effect */
   .glass-card {
     @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl;
     background: linear-gradient(135deg, 
-      hsl(var(--glass-bg) / 0.1) 0%, 
+      hsl(var(--glass-bg) / 0.15) 0%, 
+      hsl(var(--glass-bg) / 0.08) 50%,
       hsl(var(--glass-bg) / 0.05) 100%);
-    box-shadow: var(--glass-shadow) hsl(var(--glass-shadow-color) / 0.3);
+    box-shadow: 
+      var(--glass-shadow) hsl(var(--glass-shadow-color) / 0.3),
+      inset 0 1px 0 hsl(var(--foreground) / 0.1),
+      0 0 0 1px hsl(var(--primary) / 0.05);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+      transparent, 
+      hsl(var(--primary) / 0.1) 50%, 
+      transparent);
+    transition: left 0.6s ease;
+  }
+  
+  .glass-card:hover::before {
+    left: 100%;
   }
   
   .glass-button {
@@ -118,7 +142,11 @@
   }
   
   .hover-glow:hover {
-    box-shadow: 0 0 30px hsl(var(--primary) / 0.3);
+    box-shadow: 
+      0 0 30px hsl(var(--primary) / 0.3),
+      0 0 60px hsl(var(--primary) / 0.2),
+      inset 0 1px 0 hsl(var(--primary) / 0.2);
+    transform: translateY(-2px);
   }
   
   /* Nature-inspired gradients */
@@ -199,6 +227,28 @@
 
   .text-scale-2xl {
     @apply text-xl sm:text-2xl lg:text-3xl xl:text-4xl;
+  }
+
+  /* Scroll animations */
+  .scroll-fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  
+  .scroll-fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Smooth scroll snap */
+  .scroll-container {
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+  }
+  
+  .scroll-section {
+    scroll-snap-align: start;
   }
 
   /* Text utilities */

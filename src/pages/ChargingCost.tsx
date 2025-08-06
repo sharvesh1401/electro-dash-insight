@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
+import { incrementPredictionCount } from "@/lib/predictionCounter";
 
 interface CostInputs {
   batteryCapacity: number;
@@ -86,6 +87,9 @@ const ChargingCost = () => {
         energyNeeded: Math.round(energyNeeded * 10) / 10,
         peakHourSurcharge: Math.round(peakHourSurcharge * 100) / 100,
       });
+      
+      // Increment prediction counter
+      incrementPredictionCount();
       
       toast({
         title: "Cost Calculated",
