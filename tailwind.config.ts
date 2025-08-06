@@ -3,10 +3,10 @@ import type { Config } from "tailwindcss";
 export default {
 	darkMode: ["class"],
 	content: [
-		"./pages/**/*.{ts,tsx}",
-		"./components/**/*.{ts,tsx}",
-		"./app/**/*.{ts,tsx}",
-		"./src/**/*.{ts,tsx}",
+		'./pages/**/*.{ts,tsx}',
+		'./components/**/*.{ts,tsx}',
+		'./app/**/*.{ts,tsx}',
+		'./src/**/*.{ts,tsx,css}',
 	],
 	prefix: "",
 	theme: {
@@ -68,7 +68,11 @@ export default {
 				'slate-blue': 'hsl(var(--slate-blue))',
 				'moss-green': 'hsl(var(--moss-green))',
 				'soft-leaf': 'hsl(var(--soft-leaf))',
-				'glass-bg': 'hsl(var(--glass-bg))'
+				'glass-bg': 'hsl(var(--glass-bg))',
+        'white-8': 'rgba(255, 255, 255, 0.08)',
+        'white-10': 'rgba(255, 255, 255, 0.10)',
+        'white-15': 'rgba(255, 255, 255, 0.15)',
+        'white-18': 'rgba(255, 255, 255, 0.18)',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
