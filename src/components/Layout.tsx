@@ -42,11 +42,6 @@ export default function Layout({ children }: LayoutProps) {
                   96%+ Accuracy
                 </span>
               </div>
-              <div className="glass-card px-2 sm:px-3 py-1 hidden sm:block">
-                <span className="text-xs text-green-400 font-medium">
-                  No Backend Required
-                </span>
-              </div>
             </div>
           </motion.header>
 

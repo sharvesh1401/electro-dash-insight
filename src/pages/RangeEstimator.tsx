@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { useToast } from "@/hooks/use-toast";
+import { incrementPredictionCount } from "@/lib/predictionCounter";
 
 interface RangeInputs {
   batteryLevel: number;
@@ -46,6 +47,12 @@ const RangeEstimator = () => {
       
       const estimatedRange = baseRange * tempFactor * windFactor * styleFactor * weightFactor;
       setPrediction(Math.max(0, Math.round(estimatedRange)));
+      
+      // Increment prediction counter
+      incrementPredictionCount();
+      
+      // Dispatch storage event to update other components
+      window.dispatchEvent(new Event('storage'));
       
       toast({
         title: "Range Calculated",

@@ -200,4 +200,12 @@
   .text-scale-2xl {
     @apply text-xl sm:text-2xl lg:text-3xl xl:text-4xl;
   }
+
+  /* Text utilities */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 }
