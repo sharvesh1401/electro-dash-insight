@@ -165,12 +165,9 @@ const PriceEstimator = () => {
             <Calculator className="h-6 w-6 text-white" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-white">Used EV Price Estimator</h1>
-            <p className="text-white/70">Predict market value of used electric vehicles</p>
+            <h1 className="text-2xl font-bold text-emerald-100">Used EV Price Estimator</h1>
+            <p className="text-emerald-200/80">Predict market value of used electric vehicles</p>
           </div>
-        </div>
-        <div className="glass-card px-3 py-1 inline-block">
-          <span className="text-xs text-primary font-medium">97.5% Accuracy</span>
         </div>
       </motion.div>
 
@@ -182,12 +179,12 @@ const PriceEstimator = () => {
           transition={{ delay: 0.2 }}
         >
           <Card className="glass-card p-6">
-            <h2 className="text-xl font-semibold text-white mb-6">Vehicle Information</h2>
+            <h2 className="text-xl font-semibold text-emerald-100 mb-6">Vehicle Information</h2>
             
             <div className="space-y-6">
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label className="text-white">Make</Label>
+                  <Label className="text-emerald-100">Make</Label>
                   <Select value={inputs.make} onValueChange={(value) => handleInputChange('make', value)}>
                     <SelectTrigger className="glass-input">
                       <SelectValue />
@@ -203,7 +200,7 @@ const PriceEstimator = () => {
                   </Select>
                 </div>
                 <div className="space-y-2">
-                  <Label className="text-white">Model</Label>
+                  <Label className="text-emerald-100">Model</Label>
                   <Select value={inputs.model} onValueChange={(value) => handleInputChange('model', value)}>
                     <SelectTrigger className="glass-input">
                       <SelectValue />
@@ -224,8 +221,8 @@ const PriceEstimator = () => {
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label className="text-white flex items-center gap-2">
-                    <Calendar className="h-4 w-4 text-primary" />
+                  <Label className="text-emerald-100 flex items-center gap-2">
+                    <Calendar className="h-4 w-4 text-emerald-400" />
                     Year
                   </Label>
                   <Input
@@ -236,7 +233,7 @@ const PriceEstimator = () => {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label className="text-white">Mileage (km)</Label>
+                  <Label className="text-emerald-100">Mileage (km)</Label>
                   <Input
                     type="number"
                     value={inputs.mileage}
@@ -248,7 +245,7 @@ const PriceEstimator = () => {
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label className="text-white">Original Price ($)</Label>
+                  <Label className="text-emerald-100">Original Price ($)</Label>
                   <Input
                     type="number"
                     value={inputs.originalPrice}
@@ -257,7 +254,7 @@ const PriceEstimator = () => {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label className="text-white">Battery Capacity (kWh)</Label>
+                  <Label className="text-emerald-100">Battery Capacity (kWh)</Label>
                   <Input
                     type="number"
                     value={inputs.batteryCapacity}
@@ -269,11 +266,11 @@ const PriceEstimator = () => {
 
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <Label className="text-white flex items-center gap-2">
-                    <Battery className="h-4 w-4 text-primary" />
+                  <Label className="text-emerald-100 flex items-center gap-2">
+                    <Battery className="h-4 w-4 text-emerald-400" />
                     Battery Health
                   </Label>
-                  <span className="text-primary font-medium">{inputs.batteryHealth}%</span>
+                  <span className="text-emerald-400 font-medium">{inputs.batteryHealth}%</span>
                 </div>
                 <Slider
                   value={[inputs.batteryHealth]}
@@ -286,7 +283,7 @@ const PriceEstimator = () => {
               </div>
 
               <div className="space-y-2">
-                <Label className="text-white">Vehicle Condition</Label>
+                <Label className="text-emerald-100">Vehicle Condition</Label>
                 <Select value={inputs.condition} onValueChange={(value) => handleInputChange('condition', value)}>
                   <SelectTrigger className="glass-input">
                     <SelectValue />
@@ -301,8 +298,8 @@ const PriceEstimator = () => {
               </div>
 
               <div className="space-y-2">
-                <Label className="text-white flex items-center gap-2">
-                  <MapPin className="h-4 w-4 text-primary" />
+                <Label className="text-emerald-100 flex items-center gap-2">
+                  <MapPin className="h-4 w-4 text-emerald-400" />
                   Location Type
                 </Label>
                 <Select value={inputs.location} onValueChange={(value) => handleInputChange('location', value)}>
@@ -321,7 +318,7 @@ const PriceEstimator = () => {
             <Button
               onClick={predictPrice}
               disabled={isLoading}
-              className="w-full mt-6 glass-button bg-primary/20 hover:bg-primary/30 text-primary border-primary/30"
+              className="w-full mt-6 glass-button-enhanced bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border-emerald-400/30"
             >
               {isLoading ? "Estimating..." : "Estimate Price"}
             </Button>
@@ -335,7 +332,7 @@ const PriceEstimator = () => {
           transition={{ delay: 0.4 }}
         >
           <Card className="glass-card p-6">
-            <h2 className="text-xl font-semibold text-white mb-6">Price Estimation</h2>
+            <h2 className="text-xl font-semibold text-emerald-100 mb-6">Price Estimation</h2>
             
             {prediction ? (
               <motion.div
@@ -343,58 +340,58 @@ const PriceEstimator = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 className="space-y-6"
               >
-                <div className="glass-card p-6 bg-gradient-to-r from-green-500/20 to-emerald-600/20 border-green-500/30">
+                <div className="glass-card-enhanced p-6 bg-gradient-to-r from-green-500/25 to-emerald-600/25 border-green-500/40">
                   <div className="text-center">
                     <div className="text-4xl font-bold text-green-400 mb-2">
                       ${prediction.estimatedPrice.toLocaleString()}
                     </div>
-                    <div className="text-lg text-white/80 mb-2">
+                    <div className="text-lg text-emerald-100/90 mb-2">
                       Estimated Market Value
                     </div>
-                    <div className="text-sm text-white/60">
+                    <div className="text-sm text-emerald-200/70">
                       Range: ${prediction.priceRange.min.toLocaleString()} - ${prediction.priceRange.max.toLocaleString()}
                     </div>
                   </div>
                 </div>
                 
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="glass-card p-4 text-center">
-                    <div className="text-xl font-bold text-white">{prediction.depreciation}%</div>
-                    <div className="text-sm text-white/60">depreciation</div>
+                  <div className="glass-card-enhanced p-4 text-center">
+                    <div className="text-xl font-bold text-emerald-100">{prediction.depreciation}%</div>
+                    <div className="text-sm text-emerald-200/70">depreciation</div>
                   </div>
-                  <div className="glass-card p-4 text-center">
-                    <div className="text-xl font-bold text-white">{prediction.confidenceScore}%</div>
-                    <div className="text-sm text-white/60">confidence</div>
+                  <div className="glass-card-enhanced p-4 text-center">
+                    <div className="text-xl font-bold text-emerald-100">{prediction.confidenceScore}%</div>
+                    <div className="text-sm text-emerald-200/70">confidence</div>
                   </div>
                 </div>
 
                 <div className="space-y-3">
-                  <div className="flex justify-between items-center glass-card p-3">
-                    <span className="text-white/70">Battery value</span>
-                    <span className="text-white font-medium">${prediction.batteryValue.toLocaleString()}</span>
+                  <div className="flex justify-between items-center glass-card-enhanced p-3">
+                    <span className="text-emerald-200/80">Battery value</span>
+                    <span className="text-emerald-100 font-medium">${prediction.batteryValue.toLocaleString()}</span>
                   </div>
-                  <div className="flex justify-between items-center glass-card p-3">
-                    <span className="text-white/70">Market trend</span>
+                  <div className="flex justify-between items-center glass-card-enhanced p-3">
+                    <span className="text-emerald-200/80">Market trend</span>
                     <span className={`font-medium ${getTrendColor(prediction.marketTrend)}`}>
                       {prediction.marketTrend}
                     </span>
                   </div>
                 </div>
 
-                <div className="glass-card p-4 bg-primary/10 border-primary/30">
+                <div className="glass-card-enhanced p-4 bg-emerald-500/15 border-emerald-400/30">
                   <div className="flex items-center gap-2 mb-2">
-                    <TrendingUp className="h-4 w-4 text-primary" />
-                    <span className="text-white font-medium">Market Analysis</span>
+                    <TrendingUp className="h-4 w-4 text-emerald-400" />
+                    <span className="text-emerald-100 font-medium">Market Analysis</span>
                   </div>
-                  <div className="text-sm text-white/80">
+                  <div className="text-sm text-emerald-200/85">
                     Based on vehicle age, mileage, battery health ({inputs.batteryHealth}%), and current market conditions,
                     your {inputs.make} {inputs.model} has retained{" "}
-                    <span className="text-primary font-medium">{100 - prediction.depreciation}%</span> of its original value.
+                    <span className="text-emerald-400 font-medium">{100 - prediction.depreciation}%</span> of its original value.
                   </div>
                 </div>
               </motion.div>
             ) : (
-              <div className="text-center py-12 text-white/60">
+              <div className="text-center py-12 text-emerald-200/70">
                 <Calculator className="h-16 w-16 mx-auto mb-4 opacity-50" />
                 <p>Enter your vehicle details and click "Estimate Price" to get a comprehensive market valuation.</p>
               </div>

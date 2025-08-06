@@ -124,12 +124,9 @@ const ChargingCost = () => {
             <DollarSign className="h-6 w-6 text-white" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-white">Charging Cost Forecaster</h1>
-            <p className="text-white/70">Predict charging costs based on location and time</p>
+            <h1 className="text-2xl font-bold text-emerald-100">Charging Cost Forecaster</h1>
+            <p className="text-emerald-200/80">Predict charging costs based on location and time</p>
           </div>
-        </div>
-        <div className="glass-card px-3 py-1 inline-block">
-          <span className="text-xs text-primary font-medium">98.1% Accuracy</span>
         </div>
       </motion.div>
 
@@ -141,12 +138,12 @@ const ChargingCost = () => {
           transition={{ delay: 0.2 }}
         >
           <Card className="glass-card p-6">
-            <h2 className="text-xl font-semibold text-white mb-6">Charging Parameters</h2>
+            <h2 className="text-xl font-semibold text-emerald-100 mb-6">Charging Parameters</h2>
             
             <div className="space-y-6">
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label className="text-white">Battery Capacity (kWh)</Label>
+                  <Label className="text-emerald-100">Battery Capacity (kWh)</Label>
                   <Input
                     type="number"
                     value={inputs.batteryCapacity}
@@ -155,7 +152,7 @@ const ChargingCost = () => {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label className="text-white">Electricity Rate ($/kWh)</Label>
+                  <Label className="text-emerald-100">Electricity Rate ($/kWh)</Label>
                   <Input
                     type="number"
                     step="0.01"
@@ -168,7 +165,7 @@ const ChargingCost = () => {
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label className="text-white">Current Charge (%)</Label>
+                  <Label className="text-emerald-100">Current Charge (%)</Label>
                   <Input
                     type="number"
                     value={inputs.currentCharge}
@@ -177,7 +174,7 @@ const ChargingCost = () => {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label className="text-white">Target Charge (%)</Label>
+                  <Label className="text-emerald-100">Target Charge (%)</Label>
                   <Input
                     type="number"
                     value={inputs.targetCharge}
@@ -188,8 +185,8 @@ const ChargingCost = () => {
               </div>
 
               <div className="space-y-2">
-                <Label className="text-white flex items-center gap-2">
-                  <MapPin className="h-4 w-4 text-primary" />
+                <Label className="text-emerald-100 flex items-center gap-2">
+                  <MapPin className="h-4 w-4 text-emerald-400" />
                   Charging Location
                 </Label>
                 <Select value={inputs.location} onValueChange={(value) => handleInputChange('location', value)}>
@@ -206,8 +203,8 @@ const ChargingCost = () => {
               </div>
 
               <div className="space-y-2">
-                <Label className="text-white flex items-center gap-2">
-                  <Clock className="h-4 w-4 text-primary" />
+                <Label className="text-emerald-100 flex items-center gap-2">
+                  <Clock className="h-4 w-4 text-emerald-400" />
                   Time of Day
                 </Label>
                 <Select value={inputs.timeOfDay} onValueChange={(value) => handleInputChange('timeOfDay', value)}>
@@ -224,8 +221,8 @@ const ChargingCost = () => {
               </div>
 
               <div className="space-y-2">
-                <Label className="text-white flex items-center gap-2">
-                  <Zap className="h-4 w-4 text-primary" />
+                <Label className="text-emerald-100 flex items-center gap-2">
+                  <Zap className="h-4 w-4 text-emerald-400" />
                   Charging Speed
                 </Label>
                 <Select value={inputs.chargingSpeed} onValueChange={(value) => handleInputChange('chargingSpeed', value)}>
@@ -245,7 +242,7 @@ const ChargingCost = () => {
             <Button
               onClick={predictCost}
               disabled={isLoading}
-              className="w-full mt-6 glass-button bg-primary/20 hover:bg-primary/30 text-primary border-primary/30"
+              className="w-full mt-6 glass-button-enhanced bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border-emerald-400/30"
             >
               {isLoading ? "Calculating..." : "Calculate Cost"}
             </Button>
@@ -259,7 +256,7 @@ const ChargingCost = () => {
           transition={{ delay: 0.4 }}
         >
           <Card className="glass-card p-6">
-            <h2 className="text-xl font-semibold text-white mb-6">Cost Forecast</h2>
+            <h2 className="text-xl font-semibold text-emerald-100 mb-6">Cost Forecast</h2>
             
             {prediction ? (
               <motion.div
@@ -267,53 +264,53 @@ const ChargingCost = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 className="space-y-6"
               >
-                <div className="glass-card p-6 bg-gradient-to-r from-purple-500/20 to-pink-600/20 border-purple-500/30">
+                <div className="glass-card-enhanced p-6 bg-gradient-to-r from-purple-500/25 to-pink-600/25 border-purple-500/40">
                   <div className="text-center">
                     <div className="text-4xl font-bold text-purple-400 mb-2">
                       ${prediction.totalCost}
                     </div>
-                    <div className="text-lg text-white/80">
+                    <div className="text-lg text-emerald-100/90">
                       Total Charging Cost
                     </div>
                   </div>
                 </div>
                 
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="glass-card p-4 text-center">
-                    <div className="text-xl font-bold text-white">{prediction.energyNeeded}</div>
-                    <div className="text-sm text-white/60">kWh needed</div>
+                  <div className="glass-card-enhanced p-4 text-center">
+                    <div className="text-xl font-bold text-emerald-100">{prediction.energyNeeded}</div>
+                    <div className="text-sm text-emerald-200/70">kWh needed</div>
                   </div>
-                  <div className="glass-card p-4 text-center">
-                    <div className="text-xl font-bold text-white">{prediction.chargingTime}h</div>
-                    <div className="text-sm text-white/60">charging time</div>
+                  <div className="glass-card-enhanced p-4 text-center">
+                    <div className="text-xl font-bold text-emerald-100">{prediction.chargingTime}h</div>
+                    <div className="text-sm text-emerald-200/70">charging time</div>
                   </div>
                 </div>
 
                 <div className="space-y-3">
-                  <div className="flex justify-between items-center glass-card p-3">
-                    <span className="text-white/70">Cost per kWh</span>
-                    <span className="text-white font-medium">${prediction.costPerKWh}</span>
+                  <div className="flex justify-between items-center glass-card-enhanced p-3">
+                    <span className="text-emerald-200/80">Cost per kWh</span>
+                    <span className="text-emerald-100 font-medium">${prediction.costPerKWh}</span>
                   </div>
                   {prediction.peakHourSurcharge > 0 && (
-                    <div className="flex justify-between items-center glass-card p-3 bg-yellow-500/10 border-yellow-500/30">
-                      <span className="text-white/70">Peak hour surcharge</span>
+                    <div className="flex justify-between items-center glass-card-enhanced p-3 bg-yellow-500/15 border-yellow-500/40">
+                      <span className="text-emerald-200/80">Peak hour surcharge</span>
                       <span className="text-yellow-400 font-medium">+${prediction.peakHourSurcharge}</span>
                     </div>
                   )}
                 </div>
 
-                <div className="glass-card p-4 bg-primary/10 border-primary/30">
+                <div className="glass-card-enhanced p-4 bg-emerald-500/15 border-emerald-400/30">
                   <div className="flex items-center gap-2 mb-2">
-                    <Calculator className="h-4 w-4 text-primary" />
-                    <span className="text-white font-medium">Cost Breakdown</span>
+                    <Calculator className="h-4 w-4 text-emerald-400" />
+                    <span className="text-emerald-100 font-medium">Cost Breakdown</span>
                   </div>
-                  <div className="text-sm text-white/80">
+                  <div className="text-sm text-emerald-200/85">
                     {prediction.energyNeeded} kWh × ${prediction.costPerKWh}/kWh = ${prediction.totalCost}
                   </div>
                 </div>
               </motion.div>
             ) : (
-              <div className="text-center py-12 text-white/60">
+              <div className="text-center py-12 text-emerald-200/70">
                 <DollarSign className="h-16 w-16 mx-auto mb-4 opacity-50" />
                 <p>Enter your charging parameters and click "Calculate Cost" to get a detailed forecast.</p>
               </div>

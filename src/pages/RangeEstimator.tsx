@@ -88,11 +88,8 @@ const RangeEstimator = () => {
           </div>
           <div>
             <h1 className="text-scale-xl font-bold text-white">Range Estimator</h1>
-            <p className="text-white/70 text-sm">Predict your EV's driving range with ML</p>
+            <p className="text-emerald-200/80 text-sm">Predict your EV's driving range with ML</p>
           </div>
-        </div>
-        <div className="glass-card px-3 py-1 inline-block">
-          <span className="text-xs text-primary font-medium">97.2% Accuracy</span>
         </div>
       </motion.div>
 
@@ -104,17 +101,17 @@ const RangeEstimator = () => {
           transition={{ delay: 0.2 }}
         >
           <Card className="glass-card card-responsive">
-            <h2 className="text-scale-lg font-semibold text-white mb-6">Vehicle Parameters</h2>
+            <h2 className="text-scale-lg font-semibold text-emerald-100 mb-6">Vehicle Parameters</h2>
             
             <div className="spacing-responsive">
               {/* Battery Level */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <Label className="text-white flex items-center gap-2">
-                    <Battery className="h-4 w-4 text-primary" />
+                  <Label className="text-emerald-100 flex items-center gap-2">
+                    <Battery className="h-4 w-4 text-emerald-400" />
                     Battery Level
                   </Label>
-                  <span className="text-primary font-medium">{inputs.batteryLevel}%</span>
+                  <span className="text-emerald-400 font-medium">{inputs.batteryLevel}%</span>
                 </div>
                 <Slider
                   value={[inputs.batteryLevel]}
@@ -127,7 +124,7 @@ const RangeEstimator = () => {
 
               {/* Battery Capacity */}
               <div className="space-y-2">
-                <Label className="text-white">Battery Capacity (kWh)</Label>
+                <Label className="text-emerald-100">Battery Capacity (kWh)</Label>
                 <Input
                   type="number"
                   value={inputs.batteryCapacity}
@@ -139,11 +136,11 @@ const RangeEstimator = () => {
               {/* Temperature */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <Label className="text-white flex items-center gap-2">
-                    <Thermometer className="h-4 w-4 text-primary" />
+                  <Label className="text-emerald-100 flex items-center gap-2">
+                    <Thermometer className="h-4 w-4 text-emerald-400" />
                     Temperature
                   </Label>
-                  <span className="text-primary font-medium">{inputs.temperature}°C</span>
+                  <span className="text-emerald-400 font-medium">{inputs.temperature}°C</span>
                 </div>
                 <Slider
                   value={[inputs.temperature]}
@@ -158,11 +155,11 @@ const RangeEstimator = () => {
               {/* Wind Speed */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <Label className="text-white flex items-center gap-2">
-                    <Wind className="h-4 w-4 text-primary" />
+                  <Label className="text-emerald-100 flex items-center gap-2">
+                    <Wind className="h-4 w-4 text-emerald-400" />
                     Wind Speed
                   </Label>
-                  <span className="text-primary font-medium">{inputs.windSpeed} km/h</span>
+                  <span className="text-emerald-400 font-medium">{inputs.windSpeed} km/h</span>
                 </div>
                 <Slider
                   value={[inputs.windSpeed]}
@@ -176,11 +173,11 @@ const RangeEstimator = () => {
               {/* Driving Style */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <Label className="text-white flex items-center gap-2">
-                    <Car className="h-4 w-4 text-primary" />
+                  <Label className="text-emerald-100 flex items-center gap-2">
+                    <Car className="h-4 w-4 text-emerald-400" />
                     Driving Aggressiveness
                   </Label>
-                  <span className="text-primary font-medium">{inputs.drivingStyle}%</span>
+                  <span className="text-emerald-400 font-medium">{inputs.drivingStyle}%</span>
                 </div>
                 <Slider
                   value={[inputs.drivingStyle]}
@@ -193,7 +190,7 @@ const RangeEstimator = () => {
 
               {/* Vehicle Weight */}
               <div className="space-y-2">
-                <Label className="text-white">Vehicle Weight (kg)</Label>
+                <Label className="text-emerald-100">Vehicle Weight (kg)</Label>
                 <Input
                   type="number"
                   value={inputs.vehicleWeight}
@@ -206,7 +203,7 @@ const RangeEstimator = () => {
             <Button
               onClick={predictRange}
               disabled={isLoading}
-              className="w-full mt-6 glass-button bg-primary/20 hover:bg-primary/30 text-primary border-primary/30 btn-touch"
+              className="w-full mt-6 glass-button-enhanced bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border-emerald-400/30 btn-touch"
             >
               {isLoading ? "Calculating..." : "Calculate Range"}
             </Button>
@@ -220,7 +217,7 @@ const RangeEstimator = () => {
           transition={{ delay: 0.4 }}
         >
           <Card className="glass-card card-responsive">
-            <h2 className="text-scale-lg font-semibold text-white mb-6">Range Prediction</h2>
+            <h2 className="text-scale-lg font-semibold text-emerald-100 mb-6">Range Prediction</h2>
             
             {prediction !== null ? (
               <motion.div
@@ -228,28 +225,28 @@ const RangeEstimator = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 className="text-center space-y-4"
               >
-                <div className="glass-card p-8 bg-gradient-to-r from-emerald-500/20 to-teal-600/20 border-emerald-500/30">
+                <div className="glass-card-enhanced p-8 bg-gradient-to-r from-emerald-500/25 to-teal-600/25 border-emerald-500/40">
                   <div className="text-5xl font-bold text-emerald-400 mb-2">
                     {prediction}
                   </div>
-                  <div className="text-lg text-white/80">
+                  <div className="text-lg text-emerald-100/90">
                     kilometers remaining
                   </div>
                 </div>
                 
                 <div className="grid grid-cols-2 gap-4 mt-6">
-                  <div className="glass-card p-4 text-center">
-                    <div className="text-2xl font-bold text-white">{Math.round(prediction * 0.62)}</div>
-                    <div className="text-sm text-white/60">miles</div>
+                  <div className="glass-card-enhanced p-4 text-center">
+                    <div className="text-2xl font-bold text-emerald-100">{Math.round(prediction * 0.62)}</div>
+                    <div className="text-sm text-emerald-200/70">miles</div>
                   </div>
-                  <div className="glass-card p-4 text-center">
-                    <div className="text-2xl font-bold text-white">{Math.round(prediction / 80)}</div>
-                    <div className="text-sm text-white/60">hours @ 80km/h</div>
+                  <div className="glass-card-enhanced p-4 text-center">
+                    <div className="text-2xl font-bold text-emerald-100">{Math.round(prediction / 80)}</div>
+                    <div className="text-sm text-emerald-200/70">hours @ 80km/h</div>
                   </div>
                 </div>
               </motion.div>
             ) : (
-              <div className="text-center py-12 text-white/60">
+              <div className="text-center py-12 text-emerald-200/70">
                 <Battery className="h-16 w-16 mx-auto mb-4 opacity-50" />
                 <p>Enter your vehicle parameters and click "Calculate Range" to get a prediction.</p>
               </div>

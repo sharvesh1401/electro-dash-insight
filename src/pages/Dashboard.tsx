@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Battery, DollarSign, Zap, Calculator, TrendingUp, ChevronRight, Cpu, Database, Globe, ExternalLink, X, ArrowLeft } from "lucide-react";
+import { Battery, DollarSign, Zap, Calculator, TrendingUp, ChevronRight, Cpu, Database, Globe, ExternalLink, X, ArrowLeft, FileText, User } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router-dom";
@@ -65,10 +65,15 @@ const navigationTools = [
 
 const externalLinks = [
   { 
-    title: "Portfolio", 
+    title: "Portfolio",
     url: "https://sharveshfolio.netlify.app", 
-    icon: ExternalLink,
+    icon: User,
     image: "/lovable-uploads/8cceda4a-4ebb-4a8a-8675-606c061f1fd0.png"
+  },
+  {
+    title: "Resume",
+    url: "https://sharveshfolio.netlify.app/resume", 
+    icon: FileText,
   },
 ];
 
@@ -116,37 +121,38 @@ const Dashboard = () => {
       <motion.header 
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="sticky top-0 z-50 glass-card m-2 sm:m-4 mb-0 p-3 sm:p-4"
+        className="sticky top-0 z-50 glass-card-enhanced m-2 sm:m-4 mb-0 p-4 sm:p-6"
       >
-        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
+        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
           {/* Back Button for Tool Pages */}
           {isOnToolPage && (
-            <Link to="/" className="glass-button p-2 hover:text-primary transition-colors btn-touch">
-              <ArrowLeft className="h-4 w-4" />
+            <Link to="/" className="glass-button-enhanced p-3 hover:text-emerald-400 transition-all duration-300 btn-touch hover:scale-105 flex items-center gap-2">
+              <ArrowLeft className="h-5 w-5" />
+              <span className="text-sm font-medium">Back to Dashboard</span>
             </Link>
           )}
           
-          <div className="flex items-center gap-3">
-            <div className="p-2 sm:p-3 gradient-forest rounded-xl shadow-lg">
-              <Zap className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
+          <div className="flex items-center gap-4">
+            <div className="p-3 sm:p-4 gradient-nature rounded-2xl shadow-xl">
+              <Zap className="h-6 w-6 sm:h-7 sm:w-7 text-white" />
             </div>
             <div>
-              <h1 className="text-base sm:text-xl font-bold text-white">EcoAmp Suite</h1>
-              <p className="text-xs sm:text-sm text-white/70">AI-Powered EV Analytics</p>
+              <h1 className="text-lg sm:text-2xl font-bold text-emerald-100">EcoAmp Suite</h1>
+              <p className="text-sm sm:text-base text-emerald-200/80">AI-Powered EV Analytics</p>
             </div>
           </div>
           
           {/* Quick Navigation - Hidden on Tool Pages */}
           {!isOnToolPage && (
-            <div className="flex flex-wrap gap-2 lg:gap-3">
+            <div className="flex flex-wrap gap-3 lg:gap-4">
               {navigationTools.map((tool) => (
                 <Link key={tool.title} to={tool.url}>
                   <Button 
                     variant="ghost" 
                     size="sm" 
-                    className="glass-button text-xs hover:text-primary hover:border-primary/30 hover:bg-primary/10 btn-touch transition-all duration-300"
+                    className="glass-button-enhanced text-sm hover:text-emerald-300 hover:border-emerald-400/40 hover:bg-emerald-500/15 btn-touch transition-all duration-300 hover:scale-105"
                   >
-                    <tool.icon className="h-3 w-3 mr-1.5" />
+                    <tool.icon className="h-4 w-4 mr-2" />
                     <span className="hidden md:inline">{tool.title}</span>
                     <span className="md:hidden">{tool.title.split(' ')[0]}</span>
                   </Button>
@@ -156,14 +162,14 @@ const Dashboard = () => {
           )}
           
           {/* Enhanced External Links */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
             {externalLinks.map((link) => (
               <a
                 key={link.title}
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="glass-button p-2 hover:text-primary transition-all duration-300 btn-touch hover:scale-105 flex items-center gap-2"
+                className="glass-button-enhanced p-3 hover:text-emerald-300 transition-all duration-300 btn-touch hover:scale-105 flex items-center gap-2"
                 title={link.title}
               >
                 {link.image ? (
@@ -171,18 +177,18 @@ const Dashboard = () => {
                     <img 
                       src={link.image} 
                       alt="Profile" 
-                      className="h-6 w-6 rounded-full object-cover border-2 border-primary/30"
+                      className="h-7 w-7 rounded-full object-cover border-2 border-emerald-400/40"
                     />
-                    <span className="hidden sm:inline text-xs">Portfolio</span>
+                    <span className="hidden sm:inline text-sm font-medium">Portfolio</span>
                   </div>
                 ) : (
-                  <link.icon className="h-4 w-4" />
+                  <>
+                    <link.icon className="h-5 w-5" />
+                    <span className="hidden sm:inline text-sm font-medium">{link.title}</span>
+                  </>
                 )}
               </a>
             ))}
-            <div className="glass-card px-3 py-1.5 bg-primary/10 border-primary/30">
-              <span className="text-xs font-medium text-primary">96%+ Accuracy</span>
-            </div>
           </div>
         </div>
       </motion.header>
@@ -193,12 +199,13 @@ const Dashboard = () => {
           id="hero"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="scroll-section relative h-[70vh] sm:h-[80vh] bg-gradient-to-br from-primary/20 via-primary/10 to-background overflow-hidden m-2 sm:m-4 rounded-2xl"
+          className="scroll-section relative h-[70vh] sm:h-[80vh] bg-gradient-to-br from-emerald-500/10 via-teal-600/5 to-background overflow-hidden m-2 sm:m-4 rounded-3xl"
         >
-          <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent rounded-2xl" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-transparent to-transparent rounded-3xl" />
           <div className="absolute inset-0">
-            <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
-            <div className="absolute bottom-1/3 right-1/4 w-40 h-40 bg-secondary/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+            <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-emerald-400/15 rounded-full blur-3xl animate-pulse"></div>
+            <div className="absolute bottom-1/3 right-1/4 w-40 h-40 bg-teal-500/15 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+            <div className="absolute top-1/2 right-1/3 w-24 h-24 bg-green-400/10 rounded-full blur-2xl animate-pulse" style={{animationDelay: '2s'}}></div>
           </div>
           
           <div className="relative z-10 flex items-center justify-center h-full px-4">
@@ -207,15 +214,17 @@ const Dashboard = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="text-4xl sm:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-white via-white to-primary/80 bg-clip-text text-transparent mb-6"
+                className="text-4xl sm:text-6xl lg:text-7xl font-bold mb-6 relative"
               >
-                EcoAmp Suite
+                <div className="liquid-glass-text">
+                  EcoAmp Suite
+                </div>
               </motion.h1>
               <motion.p 
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                className="text-lg sm:text-2xl lg:text-3xl text-white/90 mb-12 font-light leading-relaxed"
+                className="text-lg sm:text-2xl lg:text-3xl text-emerald-100/95 mb-12 font-light leading-relaxed"
               >
                 Next-generation AI analytics for electric vehicles
               </motion.p>
@@ -232,11 +241,11 @@ const Dashboard = () => {
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.8 + index * 0.1 }}
-                    className="glass-card p-6 sm:p-8 hover-lift hover-glow group"
+                    className="glass-card-enhanced p-6 sm:p-8 hover-lift hover-glow-nature group"
                   >
-                    <stat.icon className="h-8 w-8 sm:h-12 sm:w-12 text-primary mx-auto mb-4 group-hover:scale-110 transition-transform duration-300" />
-                    <div className="text-2xl sm:text-4xl font-bold text-white mb-2">{stat.value}</div>
-                    <div className="text-sm sm:text-lg text-white/70 font-medium">{stat.label}</div>
+                    <stat.icon className="h-8 w-8 sm:h-12 sm:w-12 text-emerald-400 mx-auto mb-4 group-hover:scale-110 transition-transform duration-300" />
+                    <div className="text-2xl sm:text-4xl font-bold text-emerald-100 mb-2">{stat.value}</div>
+                    <div className="text-sm sm:text-lg text-emerald-200/80 font-medium">{stat.label}</div>
                   </motion.div>
                 ))}
               </motion.div>
@@ -263,7 +272,7 @@ const Dashboard = () => {
             <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
               AI-Powered Tools
             </h2>
-            <p className="text-lg sm:text-xl text-white/70 max-w-2xl">
+            <p className="text-lg sm:text-xl text-emerald-100/80 max-w-2xl">
               Cutting-edge machine learning models for comprehensive EV analytics
             </p>
           </motion.div>
@@ -280,35 +289,35 @@ const Dashboard = () => {
                 transition={{ delay: index * 0.1, duration: 0.6 }}
                 className="scroll-fade-in"
               >
-                <Card className="glass-card card-responsive hover-lift hover-glow group cursor-pointer h-full overflow-hidden relative">
+                <Card className="glass-card-enhanced card-responsive hover-lift hover-glow-nature group cursor-pointer h-full overflow-hidden relative">
                   <Link to={tool.url} className="block h-full relative z-10">
-                    <div className="aspect-video relative mb-6 rounded-xl overflow-hidden shadow-lg">
+                    <div className="aspect-video relative mb-6 rounded-2xl overflow-hidden shadow-xl">
                       <div className={`absolute inset-0 bg-gradient-to-br ${tool.color} opacity-90`} />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                       <div className="absolute inset-0 flex items-center justify-center">
                         <tool.icon className="h-14 w-14 sm:h-20 sm:w-20 text-white drop-shadow-lg group-hover:scale-110 transition-transform duration-300" />
                       </div>
-                      <div className="absolute top-3 right-3 glass-card px-3 py-1.5 bg-white/10">
-                        <span className="text-xs font-semibold text-primary">
+                      <div className="absolute top-4 right-4 glass-card-enhanced px-3 py-1.5 bg-white/15">
+                        <span className="text-xs font-semibold text-emerald-300">
                           {tool.accuracy}
                         </span>
                       </div>
                     </div>
                     
                     <div className="space-y-4">
-                      <h3 className="text-lg sm:text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors duration-300">
+                      <h3 className="text-lg sm:text-xl font-bold text-emerald-100 mb-2 group-hover:text-emerald-300 transition-colors duration-300">
                         {tool.title}
                       </h3>
                       
-                      <p className="text-white/80 text-sm sm:text-base leading-relaxed line-clamp-2">
+                      <p className="text-emerald-200/85 text-sm sm:text-base leading-relaxed line-clamp-2">
                         {tool.description}
                       </p>
                       
                       <div className="flex items-center justify-between pt-2">
-                        <span className="text-xs text-white/60 font-medium">
+                        <span className="text-xs text-emerald-300/70 font-medium">
                           Launch Tool
                         </span>
-                        <ChevronRight className="h-5 w-5 text-primary group-hover:translate-x-2 transition-transform duration-300" />
+                        <ChevronRight className="h-5 w-5 text-emerald-400 group-hover:translate-x-2 transition-transform duration-300" />
                       </div>
                     </div>
                   </Link>
@@ -334,7 +343,7 @@ const Dashboard = () => {
               transition={{ duration: 0.6 }}
               className="glass-card card-responsive"
             >
-              <h2 className="text-2xl sm:text-4xl font-bold text-white mb-6 sm:mb-8">About EcoAmp Suite</h2>
+              <h2 className="text-2xl sm:text-4xl font-bold text-emerald-100 mb-6 sm:mb-8">About EcoAmp Suite</h2>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12">
                 <motion.div
                   initial={{ opacity: 0, x: -20 }}
@@ -344,26 +353,30 @@ const Dashboard = () => {
                   }}
                   transition={{ delay: 0.2, duration: 0.6 }}
                 >
-                  <h3 className="text-lg sm:text-2xl font-semibold text-primary mb-4 flex items-center gap-2">
+                  <h3 className="text-lg sm:text-2xl font-semibold text-emerald-400 mb-4 flex items-center gap-2">
                     <Cpu className="h-6 w-6" />
                     Technology Stack
                   </h3>
-                  <ul className="space-y-3 text-white/80 text-sm sm:text-base">
+                  <ul className="space-y-3 text-emerald-200/85 text-sm sm:text-base">
                     <li className="flex items-center gap-3">
-                      <div className="w-2 h-2 rounded-full bg-primary"></div>
+                      <div className="w-2 h-2 rounded-full bg-emerald-400"></div>
                       TensorFlow.js for in-browser ML inference
                     </li>
                     <li className="flex items-center gap-3">
-                      <div className="w-2 h-2 rounded-full bg-primary"></div>
+                      <div className="w-2 h-2 rounded-full bg-emerald-400"></div>
                       ONNX Runtime Web for optimized models
                     </li>
                     <li className="flex items-center gap-3">
-                      <div className="w-2 h-2 rounded-full bg-primary"></div>
+                      <div className="w-2 h-2 rounded-full bg-emerald-400"></div>
                       React + TypeScript for robust UI
                     </li>
                     <li className="flex items-center gap-3">
-                      <div className="w-2 h-2 rounded-full bg-primary"></div>
+                      <div className="w-2 h-2 rounded-full bg-emerald-400"></div>
                       Tailwind CSS for beautiful styling
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <div className="w-2 h-2 rounded-full bg-emerald-400"></div>
+                      Portfolio & Resume integration
                     </li>
                   </ul>
                 </motion.div>
@@ -375,26 +388,30 @@ const Dashboard = () => {
                   }}
                   transition={{ delay: 0.4, duration: 0.6 }}
                 >
-                  <h3 className="text-lg sm:text-2xl font-semibold text-primary mb-4 flex items-center gap-2">
+                  <h3 className="text-lg sm:text-2xl font-semibold text-emerald-400 mb-4 flex items-center gap-2">
                     <TrendingUp className="h-6 w-6" />
                     Key Features
                   </h3>
-                  <ul className="space-y-3 text-white/80 text-sm sm:text-base">
+                  <ul className="space-y-3 text-emerald-200/85 text-sm sm:text-base">
                     <li className="flex items-center gap-3">
-                      <div className="w-2 h-2 rounded-full bg-primary"></div>
-                      96%+ accuracy on all ML models
+                      <div className="w-2 h-2 rounded-full bg-emerald-400"></div>
+                      High accuracy ML predictions
                     </li>
                     <li className="flex items-center gap-3">
-                      <div className="w-2 h-2 rounded-full bg-primary"></div>
+                      <div className="w-2 h-2 rounded-full bg-emerald-400"></div>
                       Real-time predictions in the browser
                     </li>
                     <li className="flex items-center gap-3">
-                      <div className="w-2 h-2 rounded-full bg-primary"></div>
+                      <div className="w-2 h-2 rounded-full bg-emerald-400"></div>
                       Lightweight models (&lt;5MB each)
                     </li>
                     <li className="flex items-center gap-3">
-                      <div className="w-2 h-2 rounded-full bg-primary"></div>
+                      <div className="w-2 h-2 rounded-full bg-emerald-400"></div>
                       Dynamic prediction tracking
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <div className="w-2 h-2 rounded-full bg-emerald-400"></div>
+                      Nature-inspired design system
                     </li>
                   </ul>
                 </motion.div>
@@ -410,23 +427,23 @@ const Dashboard = () => {
           transition={{ delay: 2.0 }}
           className="glass-card card-responsive mt-12 sm:mt-16 text-center"
         >
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-8 text-sm sm:text-base text-white/70">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-8 text-sm sm:text-base text-emerald-200/70">
             <span className="font-medium">Built with TensorFlow.js & ONNX</span>
-            <span className="hidden sm:inline text-white/40">•</span>
+            <span className="hidden sm:inline text-emerald-300/40">•</span>
             <span className="font-medium">Static ML Deployment</span>
-            <span className="hidden sm:inline text-white/40">•</span>
+            <span className="hidden sm:inline text-emerald-300/40">•</span>
             <div className="flex items-center gap-2">
               <span>Created by</span>
               <a 
                 href="https://sharveshfolio.netlify.app" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-primary hover:text-primary/80 transition-all duration-300 font-semibold hover:scale-105 flex items-center gap-2"
+                className="text-emerald-400 hover:text-emerald-300 transition-all duration-300 font-semibold hover:scale-105 flex items-center gap-2"
               >
                 <img 
                   src="/lovable-uploads/8cceda4a-4ebb-4a8a-8675-606c061f1fd0.png" 
                   alt="Sharvesh" 
-                  className="h-6 w-6 rounded-full border-2 border-primary/50"
+                  className="h-6 w-6 rounded-full border-2 border-emerald-400/50"
                 />
                 Sharvesh
               </a>

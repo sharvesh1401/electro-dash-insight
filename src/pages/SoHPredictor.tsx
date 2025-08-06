@@ -127,12 +127,9 @@ const SoHPredictor = () => {
             <TrendingUp className="h-6 w-6 text-white" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-white">State of Health Predictor</h1>
-            <p className="text-white/70">Analyze battery health with advanced ML algorithms</p>
+            <h1 className="text-2xl font-bold text-emerald-100">State of Health Predictor</h1>
+            <p className="text-emerald-200/80">Analyze battery health with advanced ML algorithms</p>
           </div>
-        </div>
-        <div className="glass-card px-3 py-1 inline-block">
-          <span className="text-xs text-primary font-medium">96.8% Accuracy</span>
         </div>
       </motion.div>
 
@@ -144,17 +141,17 @@ const SoHPredictor = () => {
           transition={{ delay: 0.2 }}
         >
           <Card className="glass-card p-6">
-            <h2 className="text-xl font-semibold text-white mb-6">Battery History</h2>
+            <h2 className="text-xl font-semibold text-emerald-100 mb-6">Battery History</h2>
             
             <div className="space-y-6">
               {/* Battery Age */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <Label className="text-white flex items-center gap-2">
-                    <Calendar className="h-4 w-4 text-primary" />
+                  <Label className="text-emerald-100 flex items-center gap-2">
+                    <Calendar className="h-4 w-4 text-emerald-400" />
                     Battery Age
                   </Label>
-                  <span className="text-primary font-medium">{inputs.batteryAge} months</span>
+                  <span className="text-emerald-400 font-medium">{inputs.batteryAge} months</span>
                 </div>
                 <Slider
                   value={[inputs.batteryAge]}
@@ -167,7 +164,7 @@ const SoHPredictor = () => {
 
               {/* Cycle Count */}
               <div className="space-y-2">
-                <Label className="text-white">Charge Cycles</Label>
+                <Label className="text-emerald-100">Charge Cycles</Label>
                 <Input
                   type="number"
                   value={inputs.cycleCount}
@@ -179,11 +176,11 @@ const SoHPredictor = () => {
               {/* Average Temperature */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <Label className="text-white flex items-center gap-2">
-                    <Activity className="h-4 w-4 text-primary" />
+                  <Label className="text-emerald-100 flex items-center gap-2">
+                    <Activity className="h-4 w-4 text-emerald-400" />
                     Avg Operating Temp
                   </Label>
-                  <span className="text-primary font-medium">{inputs.averageTemp}°C</span>
+                  <span className="text-emerald-400 font-medium">{inputs.averageTemp}°C</span>
                 </div>
                 <Slider
                   value={[inputs.averageTemp]}
@@ -198,11 +195,11 @@ const SoHPredictor = () => {
               {/* Charging Speed */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <Label className="text-white flex items-center gap-2">
-                    <Zap className="h-4 w-4 text-primary" />
+                  <Label className="text-emerald-100 flex items-center gap-2">
+                    <Zap className="h-4 w-4 text-emerald-400" />
                     Avg Charging Speed
                   </Label>
-                  <span className="text-primary font-medium">{inputs.chargingSpeed} kW</span>
+                  <span className="text-emerald-400 font-medium">{inputs.chargingSpeed} kW</span>
                 </div>
                 <Slider
                   value={[inputs.chargingSpeed]}
@@ -216,8 +213,8 @@ const SoHPredictor = () => {
               {/* Depth of Discharge */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <Label className="text-white">Depth of Discharge</Label>
-                  <span className="text-primary font-medium">{inputs.depthOfDischarge}%</span>
+                  <Label className="text-emerald-100">Depth of Discharge</Label>
+                  <span className="text-emerald-400 font-medium">{inputs.depthOfDischarge}%</span>
                 </div>
                 <Slider
                   value={[inputs.depthOfDischarge]}
@@ -231,8 +228,8 @@ const SoHPredictor = () => {
               {/* Idle Time */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <Label className="text-white">Daily Idle Time</Label>
-                  <span className="text-primary font-medium">{inputs.idleTime}h</span>
+                  <Label className="text-emerald-100">Daily Idle Time</Label>
+                  <span className="text-emerald-400 font-medium">{inputs.idleTime}h</span>
                 </div>
                 <Slider
                   value={[inputs.idleTime]}
@@ -247,7 +244,7 @@ const SoHPredictor = () => {
             <Button
               onClick={predictSoH}
               disabled={isLoading}
-              className="w-full mt-6 glass-button bg-primary/20 hover:bg-primary/30 text-primary border-primary/30"
+              className="w-full mt-6 glass-button-enhanced bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border-emerald-400/30"
             >
               {isLoading ? "Analyzing..." : "Analyze Battery Health"}
             </Button>
@@ -261,7 +258,7 @@ const SoHPredictor = () => {
           transition={{ delay: 0.4 }}
         >
           <Card className="glass-card p-6">
-            <h2 className="text-xl font-semibold text-white mb-6">Health Analysis</h2>
+            <h2 className="text-xl font-semibold text-emerald-100 mb-6">Health Analysis</h2>
             
             {prediction ? (
               <motion.div
@@ -270,12 +267,12 @@ const SoHPredictor = () => {
                 className="space-y-6"
               >
                 {/* Current SoH */}
-                <div className="glass-card p-6 bg-gradient-to-r from-blue-500/20 to-cyan-600/20 border-blue-500/30">
+                <div className="glass-card-enhanced p-6 bg-gradient-to-r from-blue-500/25 to-cyan-600/25 border-blue-500/40">
                   <div className="text-center">
                     <div className="text-4xl font-bold text-blue-400 mb-2">
                       {prediction.currentSoH}%
                     </div>
-                    <div className="text-lg text-white/80 mb-2">
+                    <div className="text-lg text-emerald-100/90 mb-2">
                       Current State of Health
                     </div>
                     <div className={`text-sm font-medium ${getHealthColor(prediction.healthStatus)}`}>
@@ -286,29 +283,29 @@ const SoHPredictor = () => {
                 
                 {/* Metrics Grid */}
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="glass-card p-4 text-center">
-                    <div className="text-2xl font-bold text-white">{prediction.futureSOH}%</div>
-                    <div className="text-sm text-white/60">Predicted SoH (1 year)</div>
+                  <div className="glass-card-enhanced p-4 text-center">
+                    <div className="text-2xl font-bold text-emerald-100">{prediction.futureSOH}%</div>
+                    <div className="text-sm text-emerald-200/70">Predicted SoH (1 year)</div>
                   </div>
-                  <div className="glass-card p-4 text-center">
-                    <div className="text-2xl font-bold text-white">{prediction.degradationRate}%</div>
-                    <div className="text-sm text-white/60">Monthly degradation</div>
+                  <div className="glass-card-enhanced p-4 text-center">
+                    <div className="text-2xl font-bold text-emerald-100">{prediction.degradationRate}%</div>
+                    <div className="text-sm text-emerald-200/70">Monthly degradation</div>
                   </div>
                 </div>
 
                 {/* Recommendation */}
-                <div className="glass-card p-4 bg-primary/10 border-primary/30">
+                <div className="glass-card-enhanced p-4 bg-emerald-500/15 border-emerald-400/30">
                   <div className="flex items-start gap-3">
-                    <AlertTriangle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                    <AlertTriangle className="h-5 w-5 text-emerald-400 flex-shrink-0 mt-0.5" />
                     <div>
-                      <h4 className="font-medium text-white mb-1">Recommendation</h4>
-                      <p className="text-sm text-white/80">{prediction.recommendation}</p>
+                      <h4 className="font-medium text-emerald-100 mb-1">Recommendation</h4>
+                      <p className="text-sm text-emerald-200/85">{prediction.recommendation}</p>
                     </div>
                   </div>
                 </div>
               </motion.div>
             ) : (
-              <div className="text-center py-12 text-white/60">
+              <div className="text-center py-12 text-emerald-200/70">
                 <TrendingUp className="h-16 w-16 mx-auto mb-4 opacity-50" />
                 <p>Enter your battery usage data and click "Analyze Battery Health" to get a comprehensive assessment.</p>
               </div>

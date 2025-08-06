@@ -120,12 +120,9 @@ const RegenPredictor = () => {
             <Zap className="h-6 w-6 text-white" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-white">Regenerative Energy Predictor</h1>
-            <p className="text-white/70">Estimate energy recovery from regenerative braking</p>
+            <h1 className="text-2xl font-bold text-emerald-100">Regenerative Energy Predictor</h1>
+            <p className="text-emerald-200/80">Estimate energy recovery from regenerative braking</p>
           </div>
-        </div>
-        <div className="glass-card px-3 py-1 inline-block">
-          <span className="text-xs text-primary font-medium">95.9% Accuracy</span>
         </div>
       </motion.div>
 
@@ -137,12 +134,12 @@ const RegenPredictor = () => {
           transition={{ delay: 0.2 }}
         >
           <Card className="glass-card p-6">
-            <h2 className="text-xl font-semibold text-white mb-6">Trip & Vehicle Parameters</h2>
+            <h2 className="text-xl font-semibold text-emerald-100 mb-6">Trip & Vehicle Parameters</h2>
             
             <div className="space-y-6">
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label className="text-white">Vehicle Weight (kg)</Label>
+                  <Label className="text-emerald-100">Vehicle Weight (kg)</Label>
                   <Input
                     type="number"
                     value={inputs.vehicleWeight}
@@ -151,7 +148,7 @@ const RegenPredictor = () => {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label className="text-white">Trip Distance (km)</Label>
+                  <Label className="text-emerald-100">Trip Distance (km)</Label>
                   <Input
                     type="number"
                     value={inputs.tripDistance}
@@ -163,11 +160,11 @@ const RegenPredictor = () => {
 
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <Label className="text-white flex items-center gap-2">
-                    <Car className="h-4 w-4 text-primary" />
+                  <Label className="text-emerald-100 flex items-center gap-2">
+                    <Car className="h-4 w-4 text-emerald-400" />
                     Average Speed
                   </Label>
-                  <span className="text-primary font-medium">{inputs.speed} km/h</span>
+                  <span className="text-emerald-400 font-medium">{inputs.speed} km/h</span>
                 </div>
                 <Slider
                   value={[inputs.speed]}
@@ -181,11 +178,11 @@ const RegenPredictor = () => {
 
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <Label className="text-white flex items-center gap-2">
-                    <Activity className="h-4 w-4 text-primary" />
+                  <Label className="text-emerald-100 flex items-center gap-2">
+                    <Activity className="h-4 w-4 text-emerald-400" />
                     Brake Intensity
                   </Label>
-                  <span className="text-primary font-medium">{inputs.brakeIntensity}%</span>
+                  <span className="text-emerald-400 font-medium">{inputs.brakeIntensity}%</span>
                 </div>
                 <Slider
                   value={[inputs.brakeIntensity]}
@@ -198,11 +195,11 @@ const RegenPredictor = () => {
 
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <Label className="text-white flex items-center gap-2">
-                    <Battery className="h-4 w-4 text-primary" />
+                  <Label className="text-emerald-100 flex items-center gap-2">
+                    <Battery className="h-4 w-4 text-emerald-400" />
                     Regen Efficiency
                   </Label>
-                  <span className="text-primary font-medium">{inputs.regenEfficiency}%</span>
+                  <span className="text-emerald-400 font-medium">{inputs.regenEfficiency}%</span>
                 </div>
                 <Slider
                   value={[inputs.regenEfficiency]}
@@ -215,8 +212,8 @@ const RegenPredictor = () => {
               </div>
 
               <div className="space-y-2">
-                <Label className="text-white flex items-center gap-2">
-                  <Mountain className="h-4 w-4 text-primary" />
+                <Label className="text-emerald-100 flex items-center gap-2">
+                  <Mountain className="h-4 w-4 text-emerald-400" />
                   Terrain Type
                 </Label>
                 <Select value={inputs.terrainType} onValueChange={(value) => handleInputChange('terrainType', value)}>
@@ -233,7 +230,7 @@ const RegenPredictor = () => {
               </div>
 
               <div className="space-y-2">
-                <Label className="text-white">Total Elevation Change (m)</Label>
+                <Label className="text-emerald-100">Total Elevation Change (m)</Label>
                 <Input
                   type="number"
                   value={inputs.elevationChange}
@@ -246,7 +243,7 @@ const RegenPredictor = () => {
             <Button
               onClick={predictRegen}
               disabled={isLoading}
-              className="w-full mt-6 glass-button bg-primary/20 hover:bg-primary/30 text-primary border-primary/30"
+              className="w-full mt-6 glass-button-enhanced bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border-emerald-400/30"
             >
               {isLoading ? "Calculating..." : "Calculate Energy Recovery"}
             </Button>
@@ -260,7 +257,7 @@ const RegenPredictor = () => {
           transition={{ delay: 0.4 }}
         >
           <Card className="glass-card p-6">
-            <h2 className="text-xl font-semibold text-white mb-6">Energy Recovery Prediction</h2>
+            <h2 className="text-xl font-semibold text-emerald-100 mb-6">Energy Recovery Prediction</h2>
             
             {prediction ? (
               <motion.div
@@ -268,53 +265,53 @@ const RegenPredictor = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 className="space-y-6"
               >
-                <div className="glass-card p-6 bg-gradient-to-r from-orange-500/20 to-red-600/20 border-orange-500/30">
+                <div className="glass-card-enhanced p-6 bg-gradient-to-r from-orange-500/25 to-red-600/25 border-orange-500/40">
                   <div className="text-center">
                     <div className="text-4xl font-bold text-orange-400 mb-2">
                       {prediction.energyRecovered}
                     </div>
-                    <div className="text-lg text-white/80">
+                    <div className="text-lg text-emerald-100/90">
                       kWh Recovered
                     </div>
                   </div>
                 </div>
                 
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="glass-card p-4 text-center">
-                    <div className="text-xl font-bold text-white">+{prediction.rangeExtension}</div>
-                    <div className="text-sm text-white/60">km range extension</div>
+                  <div className="glass-card-enhanced p-4 text-center">
+                    <div className="text-xl font-bold text-emerald-100">+{prediction.rangeExtension}</div>
+                    <div className="text-sm text-emerald-200/70">km range extension</div>
                   </div>
-                  <div className="glass-card p-4 text-center">
-                    <div className="text-xl font-bold text-white">{prediction.efficiencyGain}%</div>
-                    <div className="text-sm text-white/60">efficiency gain</div>
+                  <div className="glass-card-enhanced p-4 text-center">
+                    <div className="text-xl font-bold text-emerald-100">{prediction.efficiencyGain}%</div>
+                    <div className="text-sm text-emerald-200/70">efficiency gain</div>
                   </div>
                 </div>
 
                 <div className="space-y-3">
-                  <div className="flex justify-between items-center glass-card p-3">
-                    <span className="text-white/70">Braking events</span>
-                    <span className="text-white font-medium">{prediction.brakeEvents}</span>
+                  <div className="flex justify-between items-center glass-card-enhanced p-3">
+                    <span className="text-emerald-200/80">Braking events</span>
+                    <span className="text-emerald-100 font-medium">{prediction.brakeEvents}</span>
                   </div>
-                  <div className="flex justify-between items-center glass-card p-3">
-                    <span className="text-white/70">Potential savings</span>
+                  <div className="flex justify-between items-center glass-card-enhanced p-3">
+                    <span className="text-emerald-200/80">Potential savings</span>
                     <span className="text-green-400 font-medium">${prediction.potentialSavings}</span>
                   </div>
                 </div>
 
-                <div className="glass-card p-4 bg-primary/10 border-primary/30">
+                <div className="glass-card-enhanced p-4 bg-emerald-500/15 border-emerald-400/30">
                   <div className="flex items-center gap-2 mb-2">
-                    <TrendingUp className="h-4 w-4 text-primary" />
-                    <span className="text-white font-medium">Recovery Insight</span>
+                    <TrendingUp className="h-4 w-4 text-emerald-400" />
+                    <span className="text-emerald-100 font-medium">Recovery Insight</span>
                   </div>
-                  <div className="text-sm text-white/80">
+                  <div className="text-sm text-emerald-200/85">
                     Based on your driving profile, regenerative braking will recover{" "}
-                    <span className="text-primary font-medium">{prediction.energyRecovered} kWh</span> of energy,
-                    extending your range by <span className="text-primary font-medium">{prediction.rangeExtension} km</span>.
+                    <span className="text-emerald-400 font-medium">{prediction.energyRecovered} kWh</span> of energy,
+                    extending your range by <span className="text-emerald-400 font-medium">{prediction.rangeExtension} km</span>.
                   </div>
                 </div>
               </motion.div>
             ) : (
-              <div className="text-center py-12 text-white/60">
+              <div className="text-center py-12 text-emerald-200/70">
                 <Zap className="h-16 w-16 mx-auto mb-4 opacity-50" />
                 <p>Enter your trip parameters and click "Calculate Energy Recovery" to see how much energy you can recover.</p>
               </div>

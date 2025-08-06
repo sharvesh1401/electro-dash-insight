@@ -82,8 +82,8 @@ export function AppSidebar() {
     const active = isActive(path);
     return `glass-button p-3 w-full justify-start gap-3 text-left transition-all duration-300 ${
       active 
-        ? "bg-primary/20 text-primary border-primary/30 shadow-lg" 
-        : "text-sidebar-foreground hover:text-primary hover:border-primary/20"
+        ? "bg-emerald-500/20 text-emerald-300 border-emerald-400/30 shadow-lg" 
+        : "text-sidebar-foreground hover:text-emerald-300 hover:border-emerald-400/20"
     }`;
   };
 
@@ -99,12 +99,12 @@ export function AppSidebar() {
             transition={{ duration: 0.5 }}
             className="text-center"
           >
-            <div className="glass-card p-3 sm:p-4 gradient-forest">
+            <div className="glass-card-enhanced p-3 sm:p-4 gradient-nature">
               <h1 className={`font-bold text-white ${collapsed ? "text-xs" : "text-sm sm:text-lg lg:text-xl"}`}>
                 {collapsed ? "EA" : "EcoAmp Suite"}
               </h1>
               {!collapsed && (
-                <p className="text-white/80 text-xs sm:text-sm mt-1">ML-Powered EV Analytics</p>
+                <p className="text-emerald-100/90 text-xs sm:text-sm mt-1">ML-Powered EV Analytics</p>
               )}
             </div>
           </motion.div>
@@ -160,7 +160,7 @@ export function AppSidebar() {
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="glass-button p-2 flex items-center gap-2 sm:gap-3 text-sidebar-foreground hover:text-primary transition-colors w-full btn-touch"
+                  className="glass-button-enhanced p-2 flex items-center gap-2 sm:gap-3 text-sidebar-foreground hover:text-emerald-300 transition-colors w-full btn-touch"
                 >
                   <link.icon className="h-4 w-4" />
                   {!collapsed && <span className="text-xs sm:text-sm">{link.title}</span>}
