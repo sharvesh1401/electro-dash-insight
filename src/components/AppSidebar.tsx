@@ -56,18 +56,7 @@ const tools = [
   },
 ];
 
-const externalLinks = [
-  {
-    title: "GitHub",
-    url: "https://github.com/sharvesh1401",
-    icon: Github,
-  },
-  {
-    title: "Portfolio",
-    url: "https://sharveshfolio.netlify.app",
-    icon: ExternalLink,
-  },
-];
+const externalLinks = [];
 
 export function AppSidebar() {
   const { state } = useSidebar();

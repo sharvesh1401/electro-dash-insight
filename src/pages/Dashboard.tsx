@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
-import { Battery, DollarSign, Zap, Calculator, TrendingUp, ChevronRight, Cpu, Database, Globe, ExternalLink, X, ArrowLeft, FileText, User } from "lucide-react";
+import { Battery, DollarSign, Zap, Calculator, TrendingUp, ChevronRight, Cpu, Database, Globe, Github, ExternalLink, X, ArrowLeft, FileText, User } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getPredictionCount, formatCount } from "@/lib/predictionCounter";
+import { useScrollDirection } from "@/hooks/useScrollDirection";
 
 const tools = [
   { 
@@ -64,16 +65,16 @@ const navigationTools = [
 ];
 
 const externalLinks = [
+  {
+    title: "GitHub",
+    url: "https://github.com/sharvesh1401",
+    icon: Github,
+  },
   { 
     title: "Portfolio",
     url: "https://sharveshfolio.netlify.app", 
     icon: User,
     image: "/lovable-uploads/8cceda4a-4ebb-4a8a-8675-606c061f1fd0.png"
-  },
-  {
-    title: "Resume",
-    url: "https://sharveshfolio.netlify.app/resume", 
-    icon: FileText,
   },
 ];
 
@@ -82,6 +83,7 @@ const Dashboard = () => {
   const [visibleSections, setVisibleSections] = useState(new Set());
   const location = useLocation();
   const isOnToolPage = location.pathname !== '/';
+  const scrollDirection = useScrollDirection();
   
   useEffect(() => {
     const handleStorageChange = () => {
@@ -119,8 +121,9 @@ const Dashboard = () => {
     <div className="min-h-screen scroll-container">
       {/* Enhanced Header Navigation */}
       <motion.header 
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={{ y: 0 }}
+        animate={{ y: scrollDirection === 'down' ? -150 : 0 }}
+        transition={{ duration: 0.3 }}
         className="sticky top-0 z-50 glass-card-enhanced m-2 sm:m-4 mb-0 p-4 sm:p-6"
       >
         <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
@@ -376,7 +379,7 @@ const Dashboard = () => {
                     </li>
                     <li className="flex items-center gap-3">
                       <div className="w-2 h-2 rounded-full bg-emerald-400"></div>
-                      Portfolio & Resume integration
+                      Tailwind CSS for beautiful styling
                     </li>
                   </ul>
                 </motion.div>
@@ -433,20 +436,7 @@ const Dashboard = () => {
             <span className="font-medium">Static ML Deployment</span>
             <span className="hidden sm:inline text-emerald-300/40">•</span>
             <div className="flex items-center gap-2">
-              <span>Created by</span>
-              <a 
-                href="https://sharveshfolio.netlify.app" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-emerald-400 hover:text-emerald-300 transition-all duration-300 font-semibold hover:scale-105 flex items-center gap-2"
-              >
-                <img 
-                  src="/lovable-uploads/8cceda4a-4ebb-4a8a-8675-606c061f1fd0.png" 
-                  alt="Sharvesh" 
-                  className="h-6 w-6 rounded-full border-2 border-emerald-400/50"
-                />
-                Sharvesh
-              </a>
+              <span>Created by Sharvesh</span>
             </div>
           </div>
         </motion.footer>

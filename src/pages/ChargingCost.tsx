@@ -1,8 +1,9 @@
 import { useState, useCallback } from "react";
 import { motion } from "framer-motion";
-import { DollarSign, MapPin, Clock, Zap, TrendingUp, Calculator } from "lucide-react";
+import { DollarSign, MapPin, Clock, Zap, TrendingUp, Calculator, ArrowLeft } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -120,6 +121,9 @@ const ChargingCost = () => {
         className="glass-card p-6"
       >
         <div className="flex items-center gap-3 mb-4">
+          <Link to="/" className="glass-button-enhanced p-3 hover:text-emerald-400 transition-all duration-300 btn-touch hover:scale-105 flex items-center gap-2">
+            <ArrowLeft className="h-5 w-5" />
+          </Link>
           <div className="p-3 bg-gradient-to-r from-purple-500 to-pink-600 rounded-xl">
             <DollarSign className="h-6 w-6 text-white" />
           </div>
