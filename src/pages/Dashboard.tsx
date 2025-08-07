@@ -128,34 +128,13 @@ const Dashboard = () => {
         className="sticky top-0 z-50 glass-card-enhanced m-2 sm:m-4 mb-0 p-4 sm:p-6"
       >
         <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
-          <div className="flex items-center justify-between w-full">
-            <div className="flex items-center gap-4">
-              <div className="p-3 sm:p-4 gradient-nature rounded-2xl shadow-xl">
-                <Zap className="h-6 w-6 sm:h-7 sm:w-7 text-white" />
-              </div>
-              <div>
-                <h1 className="text-lg sm:text-2xl font-bold text-emerald-100">EcoAmp Suite</h1>
-                <p className="text-sm sm:text-base text-emerald-200/80">AI-Powered EV Analytics</p>
-              </div>
+          <div className="flex items-center gap-4">
+            <div className="p-3 sm:p-4 gradient-nature rounded-2xl shadow-xl">
+              <Zap className="h-6 w-6 sm:h-7 sm:w-7 text-white" />
             </div>
-            <div className="flex items-center gap-2">
-              {externalLinks.map((link) => (
-                <a
-                  key={link.title}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="glass-button-enhanced w-12 h-12 flex items-center justify-center hover:text-emerald-300 transition-all duration-300 btn-touch hover:scale-105"
-                  title={link.title}
-                >
-                  <link.icon className="h-6 w-6" />
-                </a>
-              ))}
-              <div className="lg:hidden">
-                <Button onClick={() => setIsMenuOpen(!isMenuOpen)} variant="ghost" size="icon" className="glass-button-enhanced w-12 h-12" aria-label="Open menu">
-                  <Menu className="h-6 w-6" />
-                </Button>
-              </div>
+            <div>
+              <h1 className="text-lg sm:text-2xl font-bold text-emerald-100">EcoAmp Suite</h1>
+              <p className="text-sm sm:text-base text-emerald-200/80">AI-Powered EV Analytics</p>
             </div>
           </div>
           
@@ -177,6 +156,41 @@ const Dashboard = () => {
               ))}
             </div>
           )}
+
+          {/* Enhanced External Links & Hamburger Menu */}
+          <div className="flex items-center gap-4">
+            {externalLinks.map((link) => (
+              <a
+                key={link.title}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="glass-button-enhanced p-3 hover:text-emerald-300 transition-all duration-300 btn-touch hover:scale-105 flex items-center gap-2"
+                title={link.title}
+              >
+                {link.image ? (
+                  <div className="flex items-center gap-2">
+                    <img
+                      src={link.image}
+                      alt="Profile"
+                      className="h-7 w-7 rounded-full object-cover border-2 border-emerald-400/40"
+                    />
+                    <span className="hidden sm:inline text-sm font-medium">Portfolio</span>
+                  </div>
+                ) : (
+                  <>
+                    <link.icon className="h-5 w-5" />
+                    <span className="hidden sm:inline text-sm font-medium">{link.title}</span>
+                  </>
+                )}
+              </a>
+            ))}
+            <div className="lg:hidden">
+              <Button onClick={() => setIsMenuOpen(!isMenuOpen)} variant="ghost" size="icon" className="glass-button-enhanced" aria-label="Open menu">
+                <Menu className="h-6 w-6" />
+              </Button>
+            </div>
+          </div>
         </div>
         {isMenuOpen && (
           <motion.div
