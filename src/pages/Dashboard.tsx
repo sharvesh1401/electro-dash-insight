@@ -397,10 +397,6 @@ const Dashboard = () => {
                       <div className="w-2 h-2 rounded-full bg-emerald-400"></div>
                       Tailwind CSS for beautiful styling
                     </li>
-                    <li className="flex items-center gap-3">
-                      <div className="w-2 h-2 rounded-full bg-emerald-400"></div>
-                      Tailwind CSS for beautiful styling
-                    </li>
                   </ul>
                 </motion.div>
                 <motion.div
