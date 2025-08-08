@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
-import { Battery, DollarSign, Zap, Calculator, TrendingUp, ChevronRight, Cpu, Database, Globe, ExternalLink, X, ArrowLeft, FileText, User } from "lucide-react";
+import { Battery, DollarSign, Zap, Calculator, TrendingUp, ChevronRight, Cpu, Database, Globe, Github, ExternalLink, X, ArrowLeft, FileText, User, Menu } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getPredictionCount, formatCount } from "@/lib/predictionCounter";
+import { useScrollDirection } from "@/hooks/useScrollDirection";
 
 const tools = [
   { 
@@ -64,24 +65,26 @@ const navigationTools = [
 ];
 
 const externalLinks = [
+  {
+    title: "GitHub",
+    url: "https://github.com/sharvesh1401",
+    icon: Github,
+  },
   { 
     title: "Portfolio",
     url: "https://sharveshfolio.netlify.app", 
     icon: User,
     image: "/lovable-uploads/8cceda4a-4ebb-4a8a-8675-606c061f1fd0.png"
   },
-  {
-    title: "Resume",
-    url: "https://sharveshfolio.netlify.app/resume", 
-    icon: FileText,
-  },
 ];
 
 const Dashboard = () => {
   const [predictionCount, setPredictionCount] = useState(getPredictionCount());
   const [visibleSections, setVisibleSections] = useState(new Set());
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
   const isOnToolPage = location.pathname !== '/';
+  const scrollDirection = useScrollDirection();
   
   useEffect(() => {
     const handleStorageChange = () => {
@@ -119,19 +122,12 @@ const Dashboard = () => {
     <div className="min-h-screen scroll-container">
       {/* Enhanced Header Navigation */}
       <motion.header 
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={{ y: 0 }}
+        animate={{ y: scrollDirection === 'down' ? -150 : 0 }}
+        transition={{ duration: 0.3 }}
         className="sticky top-0 z-50 glass-card-enhanced m-2 sm:m-4 mb-0 p-4 sm:p-6"
       >
         <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
-          {/* Back Button for Tool Pages */}
-          {isOnToolPage && (
-            <Link to="/" className="glass-button-enhanced p-3 hover:text-emerald-400 transition-all duration-300 btn-touch hover:scale-105 flex items-center gap-2">
-              <ArrowLeft className="h-5 w-5" />
-              <span className="text-sm font-medium">Back to Dashboard</span>
-            </Link>
-          )}
-          
           <div className="flex items-center gap-4">
             <div className="p-3 sm:p-4 gradient-nature rounded-2xl shadow-xl">
               <Zap className="h-6 w-6 sm:h-7 sm:w-7 text-white" />
@@ -144,7 +140,7 @@ const Dashboard = () => {
           
           {/* Quick Navigation - Hidden on Tool Pages */}
           {!isOnToolPage && (
-            <div className="flex flex-wrap gap-3 lg:gap-4">
+            <div className="hidden lg:flex flex-wrap gap-3 lg:gap-4">
               {navigationTools.map((tool) => (
                 <Link key={tool.title} to={tool.url}>
                   <Button 
@@ -160,8 +156,8 @@ const Dashboard = () => {
               ))}
             </div>
           )}
-          
-          {/* Enhanced External Links */}
+
+          {/* Enhanced External Links & Hamburger Menu */}
           <div className="flex items-center gap-4">
             {externalLinks.map((link) => (
               <a
@@ -174,12 +170,12 @@ const Dashboard = () => {
               >
                 {link.image ? (
                   <div className="flex items-center gap-2">
-                    <img 
-                      src={link.image} 
-                      alt="Profile" 
-                      className="h-7 w-7 rounded-full object-cover border-2 border-emerald-400/40"
+                    <img
+                      src={link.image}
+                      alt="Profile"
+                     className="h-6 w-6 rounded-full object-cover"
                     />
-                    <span className="hidden sm:inline text-sm font-medium">Portfolio</span>
+                   <span className="hidden sm:inline text-sm font-medium text-emerald-100">Portfolio</span>
                   </div>
                 ) : (
                   <>
@@ -189,8 +185,35 @@ const Dashboard = () => {
                 )}
               </a>
             ))}
+            <div className="lg:hidden">
+              <Button onClick={() => setIsMenuOpen(!isMenuOpen)} variant="ghost" size="icon" className="glass-button-enhanced" aria-label="Open menu">
+                <Menu className="h-6 w-6" />
+              </Button>
+            </div>
           </div>
         </div>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="lg:hidden mt-4"
+          >
+            <div className="flex flex-col gap-2">
+              {navigationTools.map((tool) => (
+                <Link key={tool.title} to={tool.url}>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="w-full justify-start glass-button-enhanced text-sm hover:text-emerald-300 hover:border-emerald-400/40 hover:bg-emerald-500/15 btn-touch transition-all duration-300 hover:scale-105"
+                  >
+                    <tool.icon className="h-4 w-4 mr-2" />
+                    <span>{tool.title}</span>
+                  </Button>
+                </Link>
+              ))}
+            </div>
+          </motion.div>
+        )}
       </motion.header>
 
       {/* Enhanced Netflix-style Hero Section */}
@@ -376,7 +399,7 @@ const Dashboard = () => {
                     </li>
                     <li className="flex items-center gap-3">
                       <div className="w-2 h-2 rounded-full bg-emerald-400"></div>
-                      Portfolio & Resume integration
+                      Tailwind CSS for beautiful styling
                     </li>
                   </ul>
                 </motion.div>
@@ -433,20 +456,7 @@ const Dashboard = () => {
             <span className="font-medium">Static ML Deployment</span>
             <span className="hidden sm:inline text-emerald-300/40">•</span>
             <div className="flex items-center gap-2">
-              <span>Created by</span>
-              <a 
-                href="https://sharveshfolio.netlify.app" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-emerald-400 hover:text-emerald-300 transition-all duration-300 font-semibold hover:scale-105 flex items-center gap-2"
-              >
-                <img 
-                  src="/lovable-uploads/8cceda4a-4ebb-4a8a-8675-606c061f1fd0.png" 
-                  alt="Sharvesh" 
-                  className="h-6 w-6 rounded-full border-2 border-emerald-400/50"
-                />
-                Sharvesh
-              </a>
+              <span>Created by Sharvesh</span>
             </div>
           </div>
         </motion.footer>

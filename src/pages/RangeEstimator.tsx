@@ -1,8 +1,9 @@
 import { useState, useCallback } from "react";
 import { motion } from "framer-motion";
-import { Battery, MapPin, Thermometer, Wind, Car } from "lucide-react";
+import { Battery, MapPin, Thermometer, Wind, Car, ArrowLeft } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
@@ -83,6 +84,9 @@ const RangeEstimator = () => {
         className="glass-card card-responsive"
       >
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 mb-4">
+          <Link to="/" className="glass-button-enhanced p-3 hover:text-emerald-400 transition-all duration-300 btn-touch hover:scale-105 flex items-center gap-2">
+            <ArrowLeft className="h-5 w-5" />
+          </Link>
           <div className="p-2 sm:p-3 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-xl">
             <Battery className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
           </div>
