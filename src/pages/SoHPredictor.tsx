@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 import { motion } from "framer-motion";
-import { TrendingUp, Calendar, Zap, Activity, AlertTriangle, ArrowLeft } from "lucide-react";
+import { TrendingUp, Calendar, Zap, Activity, AlertTriangle, ArrowLeft, ExternalLink } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -317,6 +317,31 @@ const SoHPredictor = () => {
           </Card>
         </motion.div>
       </div>
+
+      {/* Battsense Integration Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.6 }}
+        className="glass-card p-6"
+      >
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div className="flex-1">
+            <p className="text-emerald-200/80 text-sm leading-relaxed">
+              <strong>Note:</strong> This in-dashboard check is quick & manual. For detailed CSV-based diagnostics, use Battsense.
+            </p>
+          </div>
+          <a
+            href="https://battsense.netlify.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="glass-button-enhanced px-6 py-3 bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border-blue-400/30 transition-all duration-300 hover:scale-105 flex items-center gap-2 btn-touch"
+          >
+            <span className="font-medium">Battsense</span>
+            <ExternalLink className="h-4 w-4" />
+          </a>
+        </div>
+      </motion.div>
     </div>
   );
 };

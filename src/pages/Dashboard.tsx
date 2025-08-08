@@ -173,9 +173,9 @@ const Dashboard = () => {
                     <img
                       src={link.image}
                       alt="Profile"
-                      className="h-7 w-7 rounded-full object-cover border-2 border-emerald-400/40"
+                     className="h-5 w-5 rounded-full object-cover border-2 border-emerald-400/40"
                     />
-                    <span className="hidden sm:inline text-sm font-medium">Portfolio</span>
+                   <span className="hidden sm:inline text-sm font-medium text-emerald-100">Portfolio</span>
                   </div>
                 ) : (
                   <>
