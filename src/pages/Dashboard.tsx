@@ -165,7 +165,7 @@ const Dashboard = () => {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="glass-button-enhanced p-3 hover:text-emerald-300 transition-all duration-300 btn-touch hover:scale-105 flex items-center gap-2"
+                className="glass-button-enhanced p-3 hover:text-emerald-300 transition-all duration-300 btn-touch hover:scale-105 flex items-center gap-2 h-12 w-auto min-w-[120px] justify-center"
                 title={link.title}
               >
                 {link.image ? (
