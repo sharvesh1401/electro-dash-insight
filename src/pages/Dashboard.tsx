@@ -432,10 +432,6 @@ const Dashboard = () => {
                       <div className="w-2 h-2 rounded-full bg-emerald-400"></div>
                       Dynamic prediction tracking
                     </li>
-                    <li className="flex items-center gap-3">
-                      <div className="w-2 h-2 rounded-full bg-emerald-400"></div>
-                      Nature-inspired design system
-                    </li>
                   </ul>
                 </motion.div>
               </div>
