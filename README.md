@@ -1,4 +1,4 @@
-# ⚡ Electro-Dash Insight: EV Charging & Energy Analytics
+# ⚡ Electro-Dashboard Insight: EV Charging & Energy Analytics
 
 <table>
   <tr>
