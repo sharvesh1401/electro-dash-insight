@@ -39,7 +39,7 @@
 
 ## ✨ Overview
 
-**Electro-Dash Insight** (live at **[eco-amp.netlify.app](https://eco-amp.netlify.app)**) is a full-stack application designed to provide deep insights into electric vehicle charging behavior. The platform features an interactive frontend built with React that visualizes complex datasets, and it is powered by a backend with machine learning models that forecast energy consumption and charging demand.
+**Electro-Dash Insight** (live at **[eco-amp.netlify.app](https://eco-amp.netlify.app)**) is a web based application designed to provide deep insights into electric vehicle charging behavior. The platform features an interactive frontend built with React that visualizes complex datasets, and it is powered by a backend with machine learning models that forecast energy consumption and charging demand.
 
 This tool helps users, from grid operators to researchers, understand the dynamics of EV charging and plan for a more sustainable energy future.
 
