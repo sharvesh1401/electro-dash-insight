@@ -125,9 +125,9 @@ const Dashboard = () => {
       {/* Enhanced Header Navigation */}
       <motion.header 
         initial={{ y: 0 }}
-        animate={{ y: isMobile ? (scrollDirection === 'down' ? -100 : 0) : (scrollDirection === 'down' ? -150 : 0) }}
+        animate={{ y: isMobile ? (scrollDirection === 'down' ? -80 : 0) : (scrollDirection === 'down' ? -150 : 0) }}
         transition={{ duration: isMobile ? 0.2 : 0.3 }}
-        className={`sticky top-0 z-50 glass-card-enhanced m-2 sm:m-4 mb-0 ${isMobile ? 'p-3' : 'p-4 sm:p-6'}`}
+        className={`sticky top-0 z-50 glass-card-enhanced ${isMobile ? 'm-2 p-3 mb-2' : 'm-4 p-4 sm:p-6 mb-0'}`}
       >
         <div className={`flex ${isMobile ? 'flex-col gap-3' : 'flex-col lg:flex-row items-start lg:items-center justify-between gap-6'}`}>
           <div className="flex items-center gap-3">
@@ -224,8 +224,8 @@ const Dashboard = () => {
           id="hero"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className={`scroll-section relative ${isMobile ? 'h-[60vh] mt-20' : 'h-[70vh] sm:h-[80vh] mt-8'} bg-gradient-to-br from-emerald-500/10 via-teal-600/5 to-background overflow-hidden m-2 sm:m-4 rounded-3xl`}
-          style={{ marginTop: isMobile ? '100px' : '32px' }}
+          className={`scroll-section relative ${isMobile ? 'h-[50vh] mt-4' : 'h-[70vh] sm:h-[80vh] mt-8'} bg-gradient-to-br from-emerald-500/10 via-teal-600/5 to-background overflow-hidden ${isMobile ? 'm-2' : 'm-4'} rounded-3xl`}
+          style={{ marginTop: isMobile ? '16px' : '32px' }}
         >
           <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-transparent to-transparent rounded-3xl" />
           <div className="absolute inset-0">
@@ -259,7 +259,7 @@ const Dashboard = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
-                className={`grid ${isMobile ? 'grid-cols-1 gap-4 mt-6' : 'grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8'} max-w-4xl mx-auto`}
+                className={`grid ${isMobile ? 'grid-cols-3 gap-2 mt-6' : 'grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8'} max-w-4xl mx-auto`}
               >
                 {stats.map((stat, index) => (
                   <motion.div
@@ -267,11 +267,11 @@ const Dashboard = () => {
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.8 + index * 0.1 }}
-                    className={`glass-card-enhanced ${isMobile ? 'p-4 border border-emerald-500/30' : 'p-6 sm:p-8'} hover-lift hover-glow-nature group bg-emerald-950/30`}
+                    className={`glass-card-enhanced ${isMobile ? 'p-2 border border-emerald-500/30' : 'p-6 sm:p-8'} hover-lift hover-glow-nature group bg-emerald-950/30`}
                   >
-                    <stat.icon className={`${isMobile ? 'h-6 w-6' : 'h-8 w-8 sm:h-12 sm:w-12'} text-emerald-400 mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`} />
-                    <div className={`${isMobile ? 'text-lg' : 'text-2xl sm:text-4xl'} font-bold text-emerald-100 mb-2`}>{stat.value}</div>
-                    <div className={`${isMobile ? 'text-xs' : 'text-sm sm:text-lg'} text-emerald-200/80 font-medium`}>{stat.label}</div>
+                    <stat.icon className={`${isMobile ? 'h-4 w-4' : 'h-8 w-8 sm:h-12 sm:w-12'} text-emerald-400 mx-auto ${isMobile ? 'mb-2' : 'mb-4'} group-hover:scale-110 transition-transform duration-300`} />
+                    <div className={`${isMobile ? 'text-sm' : 'text-2xl sm:text-4xl'} font-bold text-emerald-100 ${isMobile ? 'mb-1' : 'mb-2'}`}>{stat.value}</div>
+                    <div className={`${isMobile ? 'text-xs leading-tight' : 'text-sm sm:text-lg'} text-emerald-200/80 font-medium`}>{stat.label}</div>
                   </motion.div>
                 ))}
               </motion.div>
@@ -284,7 +284,7 @@ const Dashboard = () => {
       {!isOnToolPage && (
         <section 
           id="tools"
-          className={`scroll-section spacing-responsive max-w-7xl mx-auto px-4 sm:px-6 ${isMobile ? 'mt-8' : 'mt-16'}`}
+          className={`scroll-section spacing-responsive max-w-7xl mx-auto px-4 sm:px-6 ${isMobile ? 'mt-6' : 'mt-16'}`}
         >
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -293,7 +293,7 @@ const Dashboard = () => {
               x: visibleSections.has('tools') ? 0 : -20 
             }}
             transition={{ duration: 0.6 }}
-            className="mb-8 sm:mb-12"
+            className={`${isMobile ? 'mb-4' : 'mb-8 sm:mb-12'}`}
           >
             <h2 className={`${isMobile ? 'text-xl' : 'text-2xl sm:text-4xl lg:text-5xl'} font-bold text-white mb-4`}>
               AI-Powered Tools
@@ -358,7 +358,7 @@ const Dashboard = () => {
         {!isOnToolPage && (
           <section 
             id="about"
-            className={`scroll-section ${isMobile ? 'mt-12' : 'mt-16 sm:mt-24'} max-w-7xl mx-auto px-4 sm:px-6`}
+            className={`scroll-section ${isMobile ? 'mt-8' : 'mt-16 sm:mt-24'} max-w-7xl mx-auto px-4 sm:px-6`}
           >
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -369,8 +369,8 @@ const Dashboard = () => {
               transition={{ duration: 0.6 }}
               className="glass-card card-responsive"
             >
-              <h2 className="text-2xl sm:text-4xl font-bold text-emerald-100 mb-6 sm:mb-8">About EcoAmp Suite</h2>
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12">
+              <h2 className={`${isMobile ? 'text-lg' : 'text-2xl sm:text-4xl'} font-bold text-emerald-100 ${isMobile ? 'mb-4' : 'mb-6 sm:mb-8'}`}>About EcoAmp Suite</h2>
+              <div className={`grid grid-cols-1 lg:grid-cols-2 ${isMobile ? 'gap-4' : 'gap-8 sm:gap-12'}`}>
                 <motion.div
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ 
@@ -379,11 +379,11 @@ const Dashboard = () => {
                   }}
                   transition={{ delay: 0.2, duration: 0.6 }}
                 >
-                  <h3 className="text-lg sm:text-2xl font-semibold text-emerald-400 mb-4 flex items-center gap-2">
+                  <h3 className={`${isMobile ? 'text-base' : 'text-lg sm:text-2xl'} font-semibold text-emerald-400 ${isMobile ? 'mb-2' : 'mb-4'} flex items-center gap-2`}>
                     <Cpu className="h-6 w-6" />
                     Technology Stack
                   </h3>
-                  <ul className="space-y-3 text-emerald-200/85 text-sm sm:text-base">
+                  <ul className={`${isMobile ? 'space-y-2' : 'space-y-3'} text-emerald-200/85 ${isMobile ? 'text-xs' : 'text-sm sm:text-base'}`}>
                     <li className="flex items-center gap-3">
                       <div className="w-2 h-2 rounded-full bg-emerald-400"></div>
                       TensorFlow.js for in-browser ML inference
@@ -410,11 +410,11 @@ const Dashboard = () => {
                   }}
                   transition={{ delay: 0.4, duration: 0.6 }}
                 >
-                  <h3 className="text-lg sm:text-2xl font-semibold text-emerald-400 mb-4 flex items-center gap-2">
+                  <h3 className={`${isMobile ? 'text-base' : 'text-lg sm:text-2xl'} font-semibold text-emerald-400 ${isMobile ? 'mb-2' : 'mb-4'} flex items-center gap-2`}>
                     <TrendingUp className="h-6 w-6" />
                     Key Features
                   </h3>
-                  <ul className="space-y-3 text-emerald-200/85 text-sm sm:text-base">
+                  <ul className={`${isMobile ? 'space-y-2' : 'space-y-3'} text-emerald-200/85 ${isMobile ? 'text-xs' : 'text-sm sm:text-base'}`}>
                     <li className="flex items-center gap-3">
                       <div className="w-2 h-2 rounded-full bg-emerald-400"></div>
                       High accuracy ML predictions
@@ -443,7 +443,7 @@ const Dashboard = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 2.0 }}
-          className={`glass-card card-responsive ${isMobile ? 'mt-8' : 'mt-12 sm:mt-16'} text-center max-w-7xl mx-auto`}
+          className={`glass-card card-responsive ${isMobile ? 'mt-6' : 'mt-12 sm:mt-16'} text-center max-w-7xl mx-auto`}
         >
           <div className={`flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-8 ${isMobile ? 'text-xs' : 'text-sm sm:text-base'} text-emerald-200/70 mb-4`}>
             <span className="font-medium">Built with TensorFlow.js & ONNX</span>
