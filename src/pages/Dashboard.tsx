@@ -224,7 +224,8 @@ const Dashboard = () => {
           id="hero"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className={`scroll-section relative ${isMobile ? 'h-[60vh] mt-4' : 'h-[70vh] sm:h-[80vh]'} bg-gradient-to-br from-emerald-500/10 via-teal-600/5 to-background overflow-hidden m-2 sm:m-4 rounded-3xl`}
+          className={`scroll-section relative ${isMobile ? 'h-[60vh] mt-20' : 'h-[70vh] sm:h-[80vh] mt-8'} bg-gradient-to-br from-emerald-500/10 via-teal-600/5 to-background overflow-hidden m-2 sm:m-4 rounded-3xl`}
+          style={{ marginTop: isMobile ? '100px' : '32px' }}
         >
           <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-transparent to-transparent rounded-3xl" />
           <div className="absolute inset-0">
@@ -258,7 +259,7 @@ const Dashboard = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
-                className={`grid ${isMobile ? 'grid-cols-1 gap-4' : 'grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8'} max-w-4xl mx-auto`}
+                className={`grid ${isMobile ? 'grid-cols-1 gap-4 mt-6' : 'grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8'} max-w-4xl mx-auto`}
               >
                 {stats.map((stat, index) => (
                   <motion.div
@@ -266,7 +267,7 @@ const Dashboard = () => {
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.8 + index * 0.1 }}
-                    className={`glass-card-enhanced ${isMobile ? 'p-4' : 'p-6 sm:p-8'} hover-lift hover-glow-nature group`}
+                    className={`glass-card-enhanced ${isMobile ? 'p-4 border border-emerald-500/30' : 'p-6 sm:p-8'} hover-lift hover-glow-nature group bg-emerald-950/30`}
                   >
                     <stat.icon className={`${isMobile ? 'h-6 w-6' : 'h-8 w-8 sm:h-12 sm:w-12'} text-emerald-400 mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`} />
                     <div className={`${isMobile ? 'text-lg' : 'text-2xl sm:text-4xl'} font-bold text-emerald-100 mb-2`}>{stat.value}</div>
@@ -283,7 +284,7 @@ const Dashboard = () => {
       {!isOnToolPage && (
         <section 
           id="tools"
-          className="scroll-section spacing-responsive max-w-7xl mx-auto px-4 sm:px-6"
+          className={`scroll-section spacing-responsive max-w-7xl mx-auto px-4 sm:px-6 ${isMobile ? 'mt-8' : 'mt-16'}`}
         >
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -357,7 +358,7 @@ const Dashboard = () => {
         {!isOnToolPage && (
           <section 
             id="about"
-            className="scroll-section mt-16 sm:mt-24"
+            className={`scroll-section ${isMobile ? 'mt-12' : 'mt-16 sm:mt-24'} max-w-7xl mx-auto px-4 sm:px-6`}
           >
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -442,9 +443,9 @@ const Dashboard = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 2.0 }}
-          className="glass-card card-responsive mt-12 sm:mt-16 text-center"
+          className={`glass-card card-responsive ${isMobile ? 'mt-8' : 'mt-12 sm:mt-16'} text-center max-w-7xl mx-auto`}
         >
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-8 text-sm sm:text-base text-emerald-200/70">
+          <div className={`flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-8 ${isMobile ? 'text-xs' : 'text-sm sm:text-base'} text-emerald-200/70 mb-4`}>
             <span className="font-medium">Built with TensorFlow.js & ONNX</span>
             <span className="hidden sm:inline text-emerald-300/40">•</span>
             <span className="font-medium">Static ML Deployment</span>
@@ -452,6 +453,11 @@ const Dashboard = () => {
             <div className="flex items-center gap-2">
               <span>Created by Sharvesh</span>
             </div>
+          </div>
+          
+          {/* Copyright */}
+          <div className={`border-t border-emerald-500/20 pt-4 ${isMobile ? 'text-xs' : 'text-sm'} text-emerald-300/60`}>
+            <p>© 2025 Sharvesh Selvakumar. All rights reserved.</p>
           </div>
         </motion.footer>
     </div>
