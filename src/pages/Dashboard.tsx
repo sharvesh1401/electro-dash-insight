@@ -6,6 +6,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getPredictionCount, formatCount } from "@/lib/predictionCounter";
 import { useScrollDirection } from "@/hooks/useScrollDirection";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const tools = [
   { 
@@ -85,6 +86,7 @@ const Dashboard = () => {
   const location = useLocation();
   const isOnToolPage = location.pathname !== '/';
   const scrollDirection = useScrollDirection();
+  const isMobile = useIsMobile();
   
   useEffect(() => {
     const handleStorageChange = () => {
@@ -97,8 +99,8 @@ const Dashboard = () => {
 
   useEffect(() => {
     const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -100px 0px'
+      threshold: isMobile ? 0.05 : 0.1,
+      rootMargin: isMobile ? '0px 0px -50px 0px' : '0px 0px -100px 0px'
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -114,7 +116,7 @@ const Dashboard = () => {
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [isMobile]);
 
   const stats = getStats(predictionCount);
 
@@ -123,18 +125,18 @@ const Dashboard = () => {
       {/* Enhanced Header Navigation */}
       <motion.header 
         initial={{ y: 0 }}
-        animate={{ y: scrollDirection === 'down' ? -150 : 0 }}
-        transition={{ duration: 0.3 }}
-        className="sticky top-0 z-50 glass-card-enhanced m-2 sm:m-4 mb-0 p-4 sm:p-6"
+        animate={{ y: isMobile ? (scrollDirection === 'down' ? -100 : 0) : (scrollDirection === 'down' ? -150 : 0) }}
+        transition={{ duration: isMobile ? 0.2 : 0.3 }}
+        className={`sticky top-0 z-50 glass-card-enhanced m-2 sm:m-4 mb-0 ${isMobile ? 'p-3' : 'p-4 sm:p-6'}`}
       >
-        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
-          <div className="flex items-center gap-4">
-            <div className="p-3 sm:p-4 gradient-nature rounded-2xl shadow-xl">
-              <Zap className="h-6 w-6 sm:h-7 sm:w-7 text-white" />
+        <div className={`flex ${isMobile ? 'flex-col gap-3' : 'flex-col lg:flex-row items-start lg:items-center justify-between gap-6'}`}>
+          <div className="flex items-center gap-3">
+            <div className={`${isMobile ? 'p-2' : 'p-3 sm:p-4'} gradient-nature rounded-2xl shadow-xl`}>
+              <Zap className={`${isMobile ? 'h-5 w-5' : 'h-6 w-6 sm:h-7 sm:w-7'} text-white`} />
             </div>
             <div>
-              <h1 className="text-lg sm:text-2xl font-bold text-emerald-100">EcoAmp Suite</h1>
-              <p className="text-sm sm:text-base text-emerald-200/80">AI-Powered EV Analytics</p>
+              <h1 className={`${isMobile ? 'text-base' : 'text-lg sm:text-2xl'} font-bold text-emerald-100`}>EcoAmp Suite</h1>
+              <p className={`${isMobile ? 'text-xs' : 'text-sm sm:text-base'} text-emerald-200/80`}>AI-Powered EV Analytics</p>
             </div>
           </div>
           
@@ -158,14 +160,14 @@ const Dashboard = () => {
           )}
 
           {/* Enhanced External Links & Hamburger Menu */}
-          <div className="flex items-center gap-4">
+          <div className={`flex items-center ${isMobile ? 'gap-2 justify-between w-full' : 'gap-4'}`}>
             {externalLinks.map((link) => (
               <a
                 key={link.title}
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="glass-button-enhanced p-3 hover:text-emerald-300 transition-all duration-300 btn-touch hover:scale-105 flex items-center gap-2 h-12 w-auto min-w-[120px] justify-center"
+                className={`glass-button-enhanced ${isMobile ? 'p-2' : 'p-3'} hover:text-emerald-300 transition-all duration-300 btn-touch hover:scale-105 flex items-center gap-2 ${isMobile ? 'h-10 w-auto min-w-[80px]' : 'h-12 w-auto min-w-[120px]'} justify-center`}
                 title={link.title}
               >
                 {link.image ? (
@@ -173,21 +175,21 @@ const Dashboard = () => {
                     <img
                       src={link.image}
                       alt="Profile"
-                     className="h-6 w-6 rounded-full object-cover"
+                     className={`${isMobile ? 'h-4 w-4' : 'h-6 w-6'} rounded-full object-cover`}
                     />
-                   <span className="hidden sm:inline text-sm font-medium text-emerald-100">Portfolio</span>
+                   <span className={`${isMobile ? 'text-xs' : 'hidden sm:inline text-sm'} font-medium text-emerald-100`}>Portfolio</span>
                   </div>
                 ) : (
                   <>
-                    <link.icon className="h-5 w-5" />
-                    <span className="hidden sm:inline text-sm font-medium">{link.title}</span>
+                    <link.icon className={`${isMobile ? 'h-4 w-4' : 'h-5 w-5'}`} />
+                    <span className={`${isMobile ? 'text-xs' : 'hidden sm:inline text-sm'} font-medium`}>{link.title}</span>
                   </>
                 )}
               </a>
             ))}
             <div className="lg:hidden">
-              <Button onClick={() => setIsMenuOpen(!isMenuOpen)} variant="ghost" size="icon" className="glass-button-enhanced" aria-label="Open menu">
-                <Menu className="h-6 w-6" />
+              <Button onClick={() => setIsMenuOpen(!isMenuOpen)} variant="ghost" size="icon" className={`glass-button-enhanced ${isMobile ? 'h-10 w-10' : ''}`} aria-label="Open menu">
+                <Menu className={`${isMobile ? 'h-5 w-5' : 'h-6 w-6'}`} />
               </Button>
             </div>
           </div>
@@ -222,7 +224,7 @@ const Dashboard = () => {
           id="hero"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="scroll-section relative h-[70vh] sm:h-[80vh] bg-gradient-to-br from-emerald-500/10 via-teal-600/5 to-background overflow-hidden m-2 sm:m-4 rounded-3xl"
+          className={`scroll-section relative ${isMobile ? 'h-[60vh] mt-4' : 'h-[70vh] sm:h-[80vh]'} bg-gradient-to-br from-emerald-500/10 via-teal-600/5 to-background overflow-hidden m-2 sm:m-4 rounded-3xl`}
         >
           <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-transparent to-transparent rounded-3xl" />
           <div className="absolute inset-0">
@@ -237,7 +239,7 @@ const Dashboard = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="text-4xl sm:text-6xl lg:text-7xl font-bold mb-6 relative"
+                className={`${isMobile ? 'text-2xl' : 'text-4xl sm:text-6xl lg:text-7xl'} font-bold ${isMobile ? 'mb-4' : 'mb-6'} relative`}
               >
                 <div className="liquid-glass-text">
                   EcoAmp Suite
@@ -247,7 +249,7 @@ const Dashboard = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                className="text-lg sm:text-2xl lg:text-3xl text-emerald-100/95 mb-12 font-light leading-relaxed"
+                className={`${isMobile ? 'text-base' : 'text-lg sm:text-2xl lg:text-3xl'} text-emerald-100/95 ${isMobile ? 'mb-8' : 'mb-12'} font-light leading-relaxed`}
               >
                 Next-generation AI analytics for electric vehicles
               </motion.p>
@@ -256,7 +258,7 @@ const Dashboard = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
-                className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 max-w-4xl mx-auto"
+                className={`grid ${isMobile ? 'grid-cols-1 gap-4' : 'grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8'} max-w-4xl mx-auto`}
               >
                 {stats.map((stat, index) => (
                   <motion.div
@@ -264,11 +266,11 @@ const Dashboard = () => {
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.8 + index * 0.1 }}
-                    className="glass-card-enhanced p-6 sm:p-8 hover-lift hover-glow-nature group"
+                    className={`glass-card-enhanced ${isMobile ? 'p-4' : 'p-6 sm:p-8'} hover-lift hover-glow-nature group`}
                   >
-                    <stat.icon className="h-8 w-8 sm:h-12 sm:w-12 text-emerald-400 mx-auto mb-4 group-hover:scale-110 transition-transform duration-300" />
-                    <div className="text-2xl sm:text-4xl font-bold text-emerald-100 mb-2">{stat.value}</div>
-                    <div className="text-sm sm:text-lg text-emerald-200/80 font-medium">{stat.label}</div>
+                    <stat.icon className={`${isMobile ? 'h-6 w-6' : 'h-8 w-8 sm:h-12 sm:w-12'} text-emerald-400 mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`} />
+                    <div className={`${isMobile ? 'text-lg' : 'text-2xl sm:text-4xl'} font-bold text-emerald-100 mb-2`}>{stat.value}</div>
+                    <div className={`${isMobile ? 'text-xs' : 'text-sm sm:text-lg'} text-emerald-200/80 font-medium`}>{stat.label}</div>
                   </motion.div>
                 ))}
               </motion.div>
@@ -292,15 +294,15 @@ const Dashboard = () => {
             transition={{ duration: 0.6 }}
             className="mb-8 sm:mb-12"
           >
-            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+            <h2 className={`${isMobile ? 'text-xl' : 'text-2xl sm:text-4xl lg:text-5xl'} font-bold text-white mb-4`}>
               AI-Powered Tools
             </h2>
-            <p className="text-lg sm:text-xl text-emerald-100/80 max-w-2xl">
+            <p className={`${isMobile ? 'text-sm' : 'text-lg sm:text-xl'} text-emerald-100/80 max-w-2xl`}>
               Cutting-edge machine learning models for comprehensive EV analytics
             </p>
           </motion.div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          <div className={`grid ${isMobile ? 'grid-cols-1 gap-4' : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8'}`}>
             {tools.map((tool, index) => (
               <motion.div
                 key={tool.title}
